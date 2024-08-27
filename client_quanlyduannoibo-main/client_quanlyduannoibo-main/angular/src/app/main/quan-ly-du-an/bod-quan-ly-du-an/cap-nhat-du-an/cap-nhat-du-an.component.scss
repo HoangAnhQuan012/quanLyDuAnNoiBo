@@ -1,0 +1,41 @@
+:host ::ng-deep app-label-validation{
+  label {
+    color: #78829D;
+  }
+}
+
+:host ::ng-deep.p-calendar {
+  width: 100%;
+}
+
+:host ::ng-deep.p-dropdown {
+  width: 100%;
+}
+
+.width-16 {
+  width: 16px;
+}
+
+.height-16 {
+  height: 16px;
+}
+
+
+:host ::ng-deep p-fileupload {
+  border: 2px dashed #99A1B7;
+  padding: 0;
+}
+
+::ng-deep {
+  app-cap-nhat-du-an {
+    .p-fileupload .p-fileupload-buttonbar {
+      background: #FFFFFF;
+      display: flex;
+      justify-content: center;
+    }
+    .p-fileupload .p-fileupload-content {
+      border: none
+    }
+
+  }
+}

@@ -1,0 +1,68 @@
+<div class="row m-b-10">
+  <div class="flex justify-content-between align-items-center">
+    <h3 class="m-b-0">Nhân viên quản lý công việc</h3>
+    <p-button label="Báo cáo công việc" icon="pi pi-plus" [rounded]="true" (click)="create()"></p-button>
+  </div>
+</div>
+<div class="card">
+  <div class="p-l-20 p-r-20">
+    <p-table #dt [value]="chamCongData" (onLazyLoad)="getAllChamCong($event)" dataKey="id" [rows]="20" [(first)]="first"
+      [loading]="loading" [lazy]="true" styleClass="p-datatable-striped" [paginator]="totalCount > 0"
+      [totalRecords]="totalCount" [showFirstLastIcon]="false" responsiveLayout="scroll"
+      [rowsPerPageOptions]="rowPerPageOptions" [showCurrentPageReport]="true"
+      currentPageReportTemplate="{{totalCount==0?'Hiển thị: 0-0/0':' Hiển thị: {first}-{last}/{totalRecords}'}} ">
+      <ng-template pTemplate="header">
+        <tr>
+          <th id="options"></th>
+          <th id="stt">STT</th>
+          <th pSortableColumn="day" id="day">
+            Ngày <p-sortIcon field="ngay"></p-sortIcon>
+          </th>
+          <th pSortableColumn="Sprint" id="Sprint">
+            Sprint <p-sortIcon field="sprint"></p-sortIcon>
+          </th>
+          <th pSortableColumn="Task" id="Task">
+            Task <p-sortIcon field="task"></p-sortIcon>
+          </th>
+          <th pSortableColumn="time" id="time">
+            Thời gian <p-sortIcon field="thoiGian"></p-sortIcon>
+          </th>
+          <th pSortableColumn="trangThai" id="trangThai">
+            Trạng thái <p-sortIcon field="trangThai"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-cc let-i="rowIndex">
+        <tr>
+          <td>
+            <div ngbDropdown class="d-inline-block">
+              <i class="pi pi-ellipsis-v cursor-pointer" id="dropdownBasic1" ngbDropdownToggle></i>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="viewDetail(cc.chamCongId)">Xem chi tiết</button>
+                <button *ngIf="cc.trangThaiChamCong == 1" ngbDropdownItem (click)="update(cc.chamCongId)">Cập nhật</button>
+                <button *ngIf="cc.trangThaiChamCong == 1" ngbDropdownItem (click)="delete(cc.chamCongId)">Xóa</button>
+              </div>
+            </div>
+          </td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ cc.ngayChamCong | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ cc.tenSprint }}</td>
+          <td>{{ cc.tenTask }}</td>
+          <td>{{ cc.thoiGian }}h</td>
+          <td>
+            <span class="style-trangThai" [ngClass]="handleShowStatus(cc.trangThaiChamCong)">
+              {{ showTrangThai(cc.trangThaiChamCong) }}
+            </span>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="10">Không có dữ liệu</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-toast key="tms" position="bottom-left"></p-toast>

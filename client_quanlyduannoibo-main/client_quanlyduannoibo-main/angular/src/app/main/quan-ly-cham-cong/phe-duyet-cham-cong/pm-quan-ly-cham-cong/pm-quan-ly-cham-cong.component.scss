@@ -1,0 +1,58 @@
+.yellow {
+  background: #FEF9CB;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 28px;
+}
+
+.dayoff {
+  background: #CACDD6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 28px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.red {
+  background: #FFE6E9;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 28px;
+}
+
+
+::ng-deep {
+  app-pm-quan-ly-cham-cong {
+    .p-dropdown {
+      width: 100%;
+      border-radius: 20px !important;
+
+      span {
+        padding-left: 14px !important;
+      }
+    }
+
+    .p-calendar {
+      input {
+        height: 40px;
+        width: 100%;
+        border-radius: 20px !important;
+
+        span {
+          padding-left: 14px !important;
+        }
+      }
+    }
+  }
+}

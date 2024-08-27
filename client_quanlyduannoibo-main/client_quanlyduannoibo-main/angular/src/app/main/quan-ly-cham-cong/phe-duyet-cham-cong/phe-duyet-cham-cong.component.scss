@@ -1,0 +1,31 @@
+::ng-deep {
+  app-phe-duyet-cham-cong {
+    .p-calendar {
+      input {
+        height: 40px;
+        width: 100%;
+        border-radius: 20px !important;
+
+        span {
+          padding-left: 14px !important;
+        }
+      }
+    }
+  }
+}
+
+.yellow,
+.blue {
+  background: #fef9cb;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 30px;
+}
+
+.blue {
+  background: #e6f0ff;
+}

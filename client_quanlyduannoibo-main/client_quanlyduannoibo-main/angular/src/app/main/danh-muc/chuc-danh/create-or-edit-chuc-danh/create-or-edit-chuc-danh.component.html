@@ -1,0 +1,50 @@
+<div class="create-or-edit-chuyen-mon-wrap">
+  <div class="custome-header flex align-items-center justify-content-between">
+    <div class="custom-header-title color-111 f-w-500">
+      <h4>{{ id ? (this.isView ? 'Xem chức danh' : 'Chỉnh sửa chức danh') : 'Thêm mới chức danh'}}</h4>
+    </div>
+    <div class="custom-header-action">
+      <p-button styleClass="p-button-rounded p-button-icon p-button-secondary" [text]="true" (click)="close()">
+        <img src="assets/customs/svgs/close-icon.svg" alt="" width="15px" height="15px">
+      </p-button>
+    </div>
+  </div>
+  <div class="custom-body">
+    <form [formGroup]="formData">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Mã chức danh'" [titleValidate]="' *'"
+              [control]="formData.get('maChucDanh')"></app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="maChucDanh">
+            <validation [control]="formData.get('maChucDanh')"></validation>
+          </div>
+
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Tên chức danh'" [titleValidate]="' *'"
+              [control]="formData.get('tenChucDanh')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="tenChucDanh">
+            <validation [control]="formData.get('tenChucDanh')"></validation>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <div class="col-12">
+            <app-label-validation class="block" [title]="'Ngạch chức danh'" [control]="formData.get('ngachChucDanh')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="ngachChucDanh">
+            <validation [control]="formData.get('ngachChucDanh')"></validation>
+          </div>
+        </div> -->
+      </div>
+    </form>
+  </div>
+
+  <div class="custom-footer">
+    <div class=" flex justify-content-end">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Hủy" (click)="close()">
+      </p-button>
+      <p-button [disabled]="disableButton" class="btn-save-dialog" label="Lưu" (click)="save()">
+      </p-button>
+    </div>
+  </div>
+</div>

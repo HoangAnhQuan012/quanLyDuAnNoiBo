@@ -1,0 +1,54 @@
+<div class="create-or-edit-permission-wrap">
+  <div class="custome-header flex align-items-center justify-content-between">
+    <div class="custom-header-title color-111 f-w-500">
+      <h4>{{ isEdit ? 'Cập nhật vai trò' : 'Thêm mới vài trò' }}</h4>
+    </div>
+    <div class="custom-header-action">
+      <p-button styleClass="p-button-rounded p-button-icon p-button-secondary" [text]="true" (click)="close()">
+        <img src="assets/customs/svgs/close-icon.svg" alt="" width="15px" height="15px">
+      </p-button>
+    </div>
+  </div>
+  <div class="custom-body">
+    <form [formGroup]="formData">
+      <p-tabView>
+        <p-tabPanel header="Thông tin">
+          <div class="flex col-12">
+            <div class="col-2 flex align-items-center">
+              <app-label-validation [title]="'Tên vai trò'" [titleValidate]="' *'"
+                [control]="formData.get('roleName')"></app-label-validation>
+            </div>
+            <div class="col-10">
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="roleName">
+              <validation [control]="formData.get('roleName')"></validation>
+            </div>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Quyền">
+          <div class="row">
+            <ng-container *ngFor="let permission of permissionsData; let i = index">
+              <div class="col-6">
+                <div class="custom-control custom-checkbox flex align-items-center">
+                  <input type="checkbox" class="custom-control-input m-r-2" [id]="'permission_' + i"
+                    [checked]="permission.isGranted" (change)="onPermissionChange(permission, $event)" />
+                  <label class="custom-control-label" [for]="'permission_' + i">
+                    {{ '::' + permission.name | abpLocalization }}
+                  </label>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </form>
+  </div>
+
+  <div class="custom-footer">
+    <div class=" flex justify-content-end">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Hủy" (click)="close()">
+      </p-button>
+      <p-button class="btn-save-dialog" label="Lưu" (click)="save()">
+      </p-button>
+    </div>
+  </div>
+</div>

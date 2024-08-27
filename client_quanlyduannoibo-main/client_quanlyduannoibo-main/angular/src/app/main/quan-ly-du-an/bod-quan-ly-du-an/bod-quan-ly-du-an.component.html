@@ -1,0 +1,102 @@
+<div class="row m-b-10">
+  <div class="flex justify-content-between align-items-center">
+    <h3 class="m-b-0">BOD quản lý dự án</h3>
+    <p-button label="Thêm mới" icon="pi pi-plus" [rounded]="true" (click)="create()"></p-button>
+  </div>
+</div>
+<div class="card">
+  <form [formGroup]="formData">
+    <div class="row p-l-40 p-r-40 m-t-20">
+      <div class="col-6">
+        <span class="p-input-icon-left filterText">
+          <i class="pi pi-search m-l-10"></i>
+          <input type="text" class="filterText" placeholder="Tìm kiếm..." pInputText formControlName="keyword"
+            (keyup.enter)="getAllDuAn()" />
+        </span>
+      </div>
+      <div class="col-2">
+        <p-dropdown appendTo="body" [options]="khachHang" [filter]="true" filterBy="displayName"
+          optionLabel="displayName" [showClear]="true" placeholder="Khách hàng" formControlName="khachHang"></p-dropdown>
+      </div>
+      <div class="col-2">
+        <p-dropdown appendTo="body" [options]="PM_list" [filter]="true" filterBy="displayName" optionLabel="displayName"
+          [showClear]="true" placeholder="Quản lý dự án" formControlName="quanLyDuAn"></p-dropdown>
+      </div>
+      <div class="col-2">
+        <p-dropdown appendTo="body" [options]="trangThai" [filter]="true" filterBy="displayName"
+          optionLabel="displayName" [showClear]="true" placeholder="Trạng thái" formControlName="trangThai"></p-dropdown>
+      </div>
+    </div>
+  </form>
+  <div class="p-l-20 p-r-20">
+    <p-table #dt [value]="duAnData" (onLazyLoad)="getAllDuAn($event)" dataKey="id" [rows]="20" [(first)]="first"
+      [loading]="loading" [lazy]="true" styleClass="p-datatable-striped custom-table-container" [paginator]="totalCount > 0"
+      [totalRecords]="totalCount" [showFirstLastIcon]="false" responsiveLayout="scroll"
+      [rowsPerPageOptions]="rowPerPageOptions" [showCurrentPageReport]="true"
+      currentPageReportTemplate="{{totalCount==0?'Hiển thị: 0-0/0':' Hiển thị: {first}-{last}/{totalRecords}'}} ">
+      <ng-template pTemplate="header">
+        <tr>
+          <th id="options"></th>
+          <th id="stt">STT</th>
+          <th pSortableColumn="projectName" id="projectName">
+            Tên dự án <p-sortIcon field="userName"></p-sortIcon>
+          </th>
+          <th pSortableColumn="customer" id="customer">
+            Khách hàng <p-sortIcon field="customer"></p-sortIcon>
+          </th>
+          <th pSortableColumn="status" id="status">
+            Trạng thái <p-sortIcon field="status"></p-sortIcon>
+          </th>
+          <th pSortableColumn="maDuAn" id="maDuAn">
+            Mã dự án <p-sortIcon field="maDuAn"></p-sortIcon>
+          </th>
+          <th pSortableColumn="ngayBatDau" id="ngayBatDau">
+            Bắt đầu <p-sortIcon field="ngayBatDau"></p-sortIcon>
+          </th>
+          <th pSortableColumn="ngayKetThuc" id="ngayKetThuc">
+            Kết thúc <p-sortIcon field="ngayKetThuc"></p-sortIcon>
+          </th>
+          <th pSortableColumn="nhanSu" id="nhanSu">
+            Nhân sự <p-sortIcon field="nhanSu"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-project let-i="rowIndex">
+        <tr>
+          <td>
+            <div ngbDropdown class="d-inline-block">
+              <i class="pi pi-ellipsis-v cursor-pointer" id="dropdownBasic1" ngbDropdownToggle></i>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button *ngIf="project.trangThai !== 4" ngbDropdownItem (click)="edit(project.id)">Sửa</button>
+                <button *ngIf="project.trangThai === 4" ngbDropdownItem (click)="view(project.id)">Xem chi tiết</button>
+                <button *ngIf="project.trangThai === 1" ngbDropdownItem (click)="delete(project.id)">Xóa</button>
+                <button *ngIf="project.trangThai === 2" ngbDropdownItem (click)="ThayDoiTrangThaiDuAn(project.id, 3)">Tạm dừng</button>
+                <button *ngIf="project.trangThai === 1 || project.trangThai === 3" ngbDropdownItem (click)="ThayDoiTrangThaiDuAn(project.id, 2)">Kích hoạt</button>
+                <button *ngIf="project.trangThai !== 4" ngbDropdownItem (click)="ThayDoiTrangThaiDuAn(project.id, 4)">Kết thúc</button>
+              </div>
+            </div>
+          </td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ project.tenDuAn }}</td>
+          <td>{{ project.khachHang }}</td>
+          <td>
+            <span class="style-trangThai" [ngClass]="handleShowStatus(project.trangThai)">
+              {{ showTrangThai(project.trangThai) }}
+            </span>
+          </td>
+          <td>{{ project.maDuAn }}</td>
+          <td>{{ project.ngayBatDau | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ project.ngayKetThuc | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ project.nhanSu }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="10">Không có dữ liệu</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-toast key="tms" position="bottom-left"></p-toast>

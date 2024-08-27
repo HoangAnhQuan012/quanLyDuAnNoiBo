@@ -1,0 +1,48 @@
+.subtaskTime {
+  width: 100%;
+  height: 36px;
+  background: #e9eaed;
+  border-radius: 5px;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+
+  .nhanSu-item {
+    padding: 5px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background: #c6c7cc;
+    border-radius: 5px;
+    color: #000;
+    margin-right: 2px;
+  }
+}
+
+::ng-deep {
+  app-sprint {
+    .p-accordion .p-accordion-content {
+      padding: 32px 64px 32px 64px;
+    }
+  }
+}
+
+.pd {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.warning-yellow{
+  background-color: #FFFCB3;
+  color: #000000;
+}
+
+.init-blue{
+  background-color: #C6E6FD;
+  color: #000000;
+}
+
+.danger-red{
+  background-color: #FFCFCF;
+  color: #000000;
+}

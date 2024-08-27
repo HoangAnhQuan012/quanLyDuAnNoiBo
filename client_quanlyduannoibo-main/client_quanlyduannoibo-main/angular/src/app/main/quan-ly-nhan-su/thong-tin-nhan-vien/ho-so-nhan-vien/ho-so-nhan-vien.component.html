@@ -1,0 +1,73 @@
+<div class="row m-b-10">
+  <div class="flex justify-content-between align-items-center">
+    <h3 class="m-b-0">Hồ sơ nhân viên</h3>
+    <p-button label="Thêm mới" icon="pi pi-plus" [rounded]="true" (click)="create()"></p-button>
+  </div>
+</div>
+<div class="card">
+  <div class="row p-l-40 p-r-40 m-t-20">
+    <div class="col-12">
+      <span class="p-input-icon-left filterText">
+        <i class="pi pi-search m-l-10"></i>
+        <input type="text" class="filterText" placeholder="Tìm kiếm..." pInputText [(ngModel)]="keyword"
+          (keyup.enter)="getAllHoSoNhanVien()" />
+      </span>
+    </div>
+  </div>
+  <div class="p-l-20 p-r-20">
+    <p-table #dt [value]="hoSoNhanVienData" (onLazyLoad)="getAllHoSoNhanVien($event)" dataKey="id" [rows]="20" [(first)]="first"
+      [loading]="loading" [lazy]="true" styleClass="p-datatable-striped" [paginator]="totalCount > 0"
+      [totalRecords]="totalCount" [showFirstLastIcon]="false" responsiveLayout="scroll"
+      [rowsPerPageOptions]="rowPerPageOptions" [showCurrentPageReport]="true"
+      currentPageReportTemplate="{{totalCount==0?'Hiển thị: 0-0/0':' Hiển thị: {first}-{last}/{totalRecords}'}} " scrollHeight="500px">
+      <ng-template pTemplate="header">
+        <tr>
+          <th id="options"></th>
+          <th id="stt">STT</th>
+          <th pSortableColumn="projectName" id="projectName">
+            Mã nhân viên <p-sortIcon field="userName"></p-sortIcon>
+          </th>
+          <th pSortableColumn="customer" id="customer">
+           Tên nhân viên <p-sortIcon field="customer"></p-sortIcon>
+          </th>
+          <th pSortableColumn="status" id="status">
+            Chức danh <p-sortIcon field="status"></p-sortIcon>
+          </th>
+          <th pSortableColumn="tienDo" id="tienDo">
+            Phòng ban <p-sortIcon field="tienDo"></p-sortIcon>
+          </th>
+          <th pSortableColumn="chiPhi" id="chiPhi">
+            Email <p-sortIcon field="chiPhi"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-hoSo let-i="rowIndex">
+        <tr>
+          <td>
+            <div ngbDropdown class="d-inline-block">
+              <i class="pi pi-ellipsis-v cursor-pointer" id="dropdownBasic1" ngbDropdownToggle></i>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="viewDetail(hoSo.id)">Xem chi tiết</button>
+                <button ngbDropdownItem (click)="update(hoSo.id)">Cập nhật</button>
+                <button ngbDropdownItem (click)="delete(hoSo.id)">Xóa</button>
+              </div>
+            </div>
+          </td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ hoSo.maNhanVien }}</td>
+          <td>{{ hoSo.hoTen }}</td>
+          <td>{{ hoSo.chucDanh }}</td>
+          <td>{{ hoSo.phongBan }}</td>
+          <td>{{ hoSo.email }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="10">Không có dữ liệu</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-toast key="tms" position="bottom-left"></p-toast>

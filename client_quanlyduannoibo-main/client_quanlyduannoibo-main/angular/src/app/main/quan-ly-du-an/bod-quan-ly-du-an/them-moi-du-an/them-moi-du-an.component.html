@@ -1,0 +1,497 @@
+<div class="row m-b-10">
+  <div class="flex justify-content-left align-items-center">
+    <h3 class="m-b-0">Thêm mới dự án</h3>
+  </div>
+</div>
+<div class="card">
+  <form [formGroup]="formData">
+    <p-tabView>
+      <p-tabPanel header="Thông tin">
+        <div class="row m-b-32">
+          <div class="flex justify-content-left align-items-center">
+            <h5 class="m-b-20">Thông tin chung</h5>
+          </div>
+          <div class="p-l-30 p-r-30">
+            <div class="row">
+              <div class="flex col-12 p-0">
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Mã dự án'" [titleValidate]="' *'"
+                    [control]="formData.get('maDuAn')"></app-label-validation>
+                  <input class="w-12 m-t-5" type="text" pInputText formControlName="maDuAn">
+                  <validation [control]="formData.get('maDuAn')"></validation>
+                </div>
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Tên dự án'" [titleValidate]="' *'"
+                    [control]="formData.get('tenDuAn')"></app-label-validation>
+                  <input class="w-12 m-t-5" type="text" pInputText formControlName="tenDuAn">
+                  <validation [control]="formData.get('tenDuAn')"></validation>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="flex col-12 p-0">
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Giá trị hợp đồng'"
+                    [control]="formData.get('giaTriHD')"></app-label-validation>
+                  <input class="w-12 m-t-5" type="text" pInputText formControlName="giaTriHD">
+                  <validation [control]="formData.get('giaTriHD')"></validation>
+                </div>
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Số hợp đồng'"
+                    [control]="formData.get('soHopDong')"></app-label-validation>
+                  <input class="w-12 m-t-5" type="text" pInputText formControlName="soHopDong">
+                  <validation [control]="formData.get('soHopDong')"></validation>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="flex col-12 p-0">
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Khách hàng'" [titleValidate]="' *'"
+                    [control]="formData.get('khachHang')"></app-label-validation>
+                  <input class="w-12 m-t-5" type="text" pInputText formControlName="khachHang">
+                  <validation [control]="formData.get('khachHang')"></validation>
+                </div>
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Nội dung phát triển'" [titleValidate]="' *'"
+                    [control]="formData.get('noiDungPhatTrien')"></app-label-validation>
+                  <input class="w-12 m-t-5" type="text" pInputText formControlName="noiDungPhatTrien">
+                  <validation [control]="formData.get('noiDungPhatTrien')"></validation>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="flex col-12 p-0">
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Ngày bắt đầu'" [titleValidate]="' *'"
+                    [control]="formData.get('ngayBatDau')"></app-label-validation>
+                  <p-calendar styleClass="m-t-5" appendTo="body" formControlName="ngayBatDau" [iconDisplay]="'input'"
+                    [showIcon]="true"></p-calendar>
+                  <validation [control]="formData.get('ngayBatDau')"></validation>
+                </div>
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Ngày kết thúc'" [titleValidate]="' *'"
+                    [control]="formData.get('ngayKetThuc')"></app-label-validation>
+                  <p-calendar styleClass="m-t-5" appendTo="body" formControlName="ngayKetThuc" [iconDisplay]="'input'"
+                    [showIcon]="true"></p-calendar>
+                  <validation [control]="formData.get('ngayKetThuc')"></validation>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row m-t-32">
+          <div class="flex justify-content-left align-items-center">
+            <h5 class="m-b-20">Thông tin chi tiết</h5>
+          </div>
+
+          <div class="p-l-30 p-r-30">
+            <div class="row">
+              <div class="flex col-12 p-0">
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Ứng dụng đầu cuối'" [titleValidate]="' *'"
+                    [control]="formData.get('ungDungDauCuoi')"></app-label-validation>
+                  <div class="flex col-6 align-items-center">
+                    <p-checkbox class="width-16 height-16 m-r-10" type="checkbox"
+                      [formControl]="formData.controls['ungDungDauCuoi']" id="web" value="0" inputId="ungDungDauCuoi0"
+                      name="ungDungDauCuoi"></p-checkbox>
+                    <label class="m-r-30" for="web">Web</label>
+                    <p-checkbox class="width-16 height-16 m-r-10" type="checkbox"
+                      [formControl]="formData.controls['ungDungDauCuoi']" id="android" value="1"
+                      inputId="ungDungDauCuoi1"></p-checkbox>
+                    <label class="m-r-30" for="android" name="ungDungDauCuoi">Android</label>
+                    <p-checkbox class="width-16 height-16 m-r-10" type="checkbox"
+                      [formControl]="formData.controls['ungDungDauCuoi']" id="ios" value="2" inputId="ungDungDauCuoi2"
+                      name="ungDungDauCuoi"></p-checkbox>
+                    <label for="ios">IOS</label>
+                  </div>
+                  <validation [control]="formData.get('ungDungDauCuoi')"></validation>
+                </div>
+                <div class="col-6">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="flex col-12 p-0">
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Công nghệ sử dụng'" [titleValidate]="' *'"
+                    [control]="formData.get('congNgheSuDung')"></app-label-validation>
+                  <input class="w-12 m-t-5" type="text" pInputText formControlName="congNgheSuDung">
+                  <validation [control]="formData.get('congNgheSuDung')"></validation>
+                </div>
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Quy trình phát triển'" [titleValidate]="' *'"
+                    [control]="formData.get('quyTrinhPhatTrien')"></app-label-validation>
+                  <input class="w-12 m-t-5" type="text" pInputText formControlName="quyTrinhPhatTrien">
+                  <validation [control]="formData.get('quyTrinhPhatTrien')"></validation>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="flex col-12 p-0">
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Quản lý dự án'" [titleValidate]="' *'"
+                    [control]="formData.get('quanLyDuAn')"></app-label-validation>
+                  <p-dropdown appendTo="body" [options]="quanLyDuAn" [filter]="true" filterBy="displayName"
+                    optionLabel="displayName" [showClear]="true" formControlName="quanLyDuAn"></p-dropdown>
+                  <validation [control]="formData.get('quanLyDuAn')"></validation>
+                </div>
+                <div class="col-6">
+                  <app-label-validation class="d-block" [title]="'Lương cơ sở'" [titleValidate]="' *'"
+                    [control]="formData.get('luongCoSo')"></app-label-validation>
+                  <input class="w-12 m-t-5" type="text" pInputText formControlName="luongCoSo">
+                  <validation [control]="formData.get('luongCoSo')"></validation>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Phạm vi dự án">
+        <div class="row m-b-32">
+          <div class="flex justify-content-left align-items-center">
+            <h5 class="m-b-20">Yêu cầu nghiệp vụ</h5>
+          </div>
+          <p-toast />
+          <p-fileUpload name="myfile[]" url="https://www.primefaces.org/cdn/api/upload.php" [multiple]="true"
+            accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-excel, application/pdf, image/png, image/jpeg"
+            [maxFileSize]="maxFileSize" (onUpload)="onTemplatedUpload()" (onSelect)="onSelectedFiles($event)">
+            <ng-template pTemplate="header" let-files let-chooseCallback="chooseCallback"
+              let-clearCallback="clearCallback" let-uploadCallback="uploadCallback">
+              <div class="flex flex-wrap justify-content-between align-items-center flex-1 gap-2">
+                <div class="flex gap-2">
+                  <p-button (onClick)="choose($event, chooseCallback)" [disabled]="files.length === 5"
+                    icon="pi pi-images" [rounded]="true" [outlined]="true" />
+                  <p-button (onClick)="uploadEvent(uploadCallback)" icon="pi pi-cloud-upload" [rounded]="true"
+                    [outlined]="true" severity="success" [disabled]="!files || files.length === 0" />
+                  <p-button (onClick)="clearCallback()" icon="pi pi-times" [rounded]="true" [outlined]="true"
+                    severity="danger" [disabled]="!files || files.length === 0" />
+                </div>
+                <p-progressBar [value]="totalSizePercent" [showValue]="false"
+                  styleClass="md:w-20rem h-1rem w-full md:ml-auto"
+                  [ngClass]="{ 'exceeded-progress-bar': totalSizePercent > 100 }">
+                  <span class="white-space-nowrap">{{ totalSize }}B / 1Mb</span>
+                </p-progressBar>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="content" let-files let-uploadedFiles="uploadedFiles"
+              let-removeFileCallback="removeFileCallback" let-removeUploadedFileCallback="removeUploadedFileCallback">
+              <div *ngIf="files?.length > 0">
+                <!-- <h5>Pending</h5> -->
+                <div class="flex flex-wrap p-0 sm:p-5 gap-5">
+                  <div *ngFor="let file of files; let i = index"
+                    class="card m-0 px-6 flex flex-column border-1 surface-border align-items-center gap-3">
+                    <div>
+                      <img *ngIf="!file.objectURL" role="presentation" [alt]="file.name"
+                        src="assets/customs/svgs/logo-project.svg" width="100" height="50" />
+                      <img *ngIf="file.objectURL" role="presentation" [alt]="file.name" [src]="file.objectURL"
+                        width="100" height="50" />
+                    </div>
+                    <span class="font-semibold">{{ file.name }}</span>
+                    <div>{{ formatSize(file.size) }}</div>
+                    <p-badge value="Pending" severity="warning" />
+                    <p-button icon="pi pi-times"
+                      (click)="onRemoveTemplatingFile($event, file, removeFileCallback, index)" [outlined]="true"
+                      [rounded]="true" severity="danger" />
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="uploadedFiles?.length > 0">
+                <h5>Completed</h5>
+                <div class="flex flex-wrap p-0 sm:p-5 gap-5">
+                  <div *ngFor="let file of uploadedFiles; let i = index"
+                    class="card m-0 px-6 flex flex-column border-1 surface-border align-items-center gap-3">
+                    <div>
+                      <img role="presentation" [alt]="file.name" [src]="file.objectURL" width="100" height="50" />
+                    </div>
+                    <span class="font-semibold">{{ file.name }}</span>
+                    <div>{{ formatSize(file.size) }}</div>
+                    <p-badge value="Completed" class="mt-3" severity="success" />
+                    <p-button icon="pi pi-times" (onClick)="removeUploadedFileCallback(index)" [outlined]="true"
+                      [rounded]="true" severity="danger" />
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="file"></ng-template>
+          </p-fileUpload>
+
+        </div>
+
+        <div class="row m-t-32">
+          <div class="flex justify-content-left align-items-center">
+            <h5 class="m-b-20">Ước lượng nỗ lực thực tế:</h5>
+          </div>
+          <div class="col-lg-12 m-l-20 m-t-10">
+            <ng-container formArrayName="modules"
+              *ngFor="let item of formData.get('modules')['controls']; let i = index;">
+              <div [formGroupName]="i" class="form-group ui-fluid row">
+                <div class="col-lg-6">
+                  <app-label-validation [control]="item.get('tenModule')"
+                    [title]="(item.get('changeRequest').value?'ChangeRequest ':  'Task ')+(i+1)">
+                  </app-label-validation>
+                  <input class="form-control" type="text" formControlName="tenModule" pInputText />
+                  <validation [control]="item.get('tenModule')">
+                  </validation>
+                </div>
+                <div class="col-lg-6">
+                  <div class="ui-fluid row">
+                    <div class="col-lg-2">
+                      <app-label-validation [control]="item.get('pm')" [title]="'PM'">
+                      </app-label-validation>
+                      <input class="form-control" type="text" decimal formControlName='pm' pInputText
+                        (focus)="tinhGio(item.get('pm'),i)" />
+                    </div>
+                    <div class="col-lg-2">
+                      <app-label-validation [control]="item.get('dev')" [title]="'DEV'">
+                      </app-label-validation>
+                      <input class="form-control" type="text" decimal formControlName='dev' pInputText
+                        (focus)="tinhGio(item.get('dev'),i)" />
+                    </div>
+                    <div class="col-lg-2">
+                      <app-label-validation [control]="item.get('test')" [title]="'TEST'">
+                      </app-label-validation>
+                      <input class="form-control" type="text" decimal formControlName='test' pInputText
+                        (focus)="tinhGio(item.get('test'),i)" />
+                    </div>
+                    <div class="col-lg-2">
+                      <app-label-validation [control]="item.get('ba')" [title]="'BA'">
+                      </app-label-validation>
+                      <input class="form-control" type="text" decimal formControlName='ba' pInputText
+                        (focus)="tinhGio(item.get('ba'),i)" />
+                    </div>
+                    <div class="col-lg-2">
+                      <app-label-validation [control]="item.get('cong')" [title]="'CỘNG'">
+                      </app-label-validation>
+                      <input class="form-control" type="text" decimal formControlName='cong' pInputText />
+                    </div>
+                    <div class="col-lg-2 d-flex align-items-end">
+                      <p-button class="btn-delete-dialog" (click)="xoaModule(i)" icon="pi pi-trash" ></p-button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div class="form-group ui-fluid row m-t-20">
+              <div class="col-lg-6">
+                <p-button class="btn-save-dialog" (click)="themModule()" icon="pi pi-plus"
+                  label="Thêm task"></p-button>
+              </div>
+              <div class="col-lg-6">
+                <div class="ui-fluid row">
+                  <div class="col-lg-4 offset-lg-8">
+                    <span class="text-dark">Tổng cộng: {{tongCong}} giờ</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Chỉ tiêu dự án">
+        <div class="p-l-30 p-r-30">
+          <div class="row">
+            <div class="flex col-12 p-0">
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Bàn giao đúng hạn'"
+                  [control]="formData.get('banGiaoDungHan')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="banGiaoDungHan">
+                <validation [control]="formData.get('banGiaoDungHan')"></validation>
+              </div>
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Hiệu quả sử dụng nhân sự'"
+                  [control]="formData.get('hieuQuaSuDungNhanSu')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="hieuQuaSuDungNhanSu">
+                <validation [control]="formData.get('hieuQuaSuDungNhanSu')"></validation>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="flex col-12 p-0">
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Nỗ lực khắc phục lỗi'"
+                  [control]="formData.get('noLucKhacPhucLoi')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="noLucKhacPhucLoi">
+                <validation [control]="formData.get('noLucKhacPhucLoi')"></validation>
+              </div>
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Mức độ hài lòng của khách hàng'"
+                  [control]="formData.get('mucDoHaiLongCuaKhachHang')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="mucDoHaiLongCuaKhachHang">
+                <validation [control]="formData.get('mucDoHaiLongCuaKhachHang')"></validation>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="flex col-12 p-0">
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Mức độ lỗi bị phát hiện'"
+                  [control]="formData.get('mucDoLoiBiPhatHien')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="mucDoLoiBiPhatHien">
+                <validation [control]="formData.get('mucDoLoiBiPhatHien')"></validation>
+              </div>
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Mức độ lỗi UAT'"
+                  [control]="formData.get('mucDoLoiUAT')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="mucDoLoiUAT">
+                <validation [control]="formData.get('mucDoLoiUAT')"></validation>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="flex col-12 p-0">
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Tỷ lệ thực hiện đúng quy trình'"
+                  [control]="formData.get('tyLeThucHienDungQuyTrinh')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="tyLeThucHienDungQuyTrinh">
+                <validation [control]="formData.get('tyLeThucHienDungQuyTrinh')"></validation>
+              </div>
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Năng suất tạo test case'"
+                  [control]="formData.get('nangSuatTaoTestcase')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="nangSuatTaoTestcase">
+                <validation [control]="formData.get('nangSuatTaoTestcase')"></validation>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="flex col-12 p-0">
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Năng suất thực thi testcase'"
+                  [control]="formData.get('nangSuatThuThiTestcase')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="nangSuatThuThiTestcase">
+                <validation [control]="formData.get('nangSuatThuThiTestcase')"></validation>
+              </div>
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Năng suất DEV'"
+                  [control]="formData.get('nangSuatDev')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="nangSuatDev">
+                <validation [control]="formData.get('nangSuatDev')"></validation>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="flex col-12 p-0">
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Năng suất viết UT'"
+                  [control]="formData.get('nangSuatVietUT')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="nangSuatVietUT">
+                <validation [control]="formData.get('nangSuatVietUT')"></validation>
+              </div>
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Năng suất thực thi UT'"
+                  [control]="formData.get('nangSuatThucThiUT')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="nangSuatThucThiUT">
+                <validation [control]="formData.get('nangSuatThucThiUT')"></validation>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="flex col-12 p-0">
+              <div class="col-6">
+                <app-label-validation class="d-block" [title]="'Năng suất BA'"
+                  [control]="formData.get('nangSuatBA')"></app-label-validation>
+                <input class="w-12 m-t-5" type="text" pInputText formControlName="nangSuatBA">
+                <validation [control]="formData.get('nangSuatBA')"></validation>
+              </div>
+              <div class="col-6">
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Hiệu quả dự án">
+        <div class="row">
+          <div class="flex col-12 p-0">
+            <div class="col-12">
+              <app-label-validation class="d-block" [title]="'Giá trị hợp đồng'"
+                [control]="formData.get('giaTriHopDong')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="giaTriHopDong">
+              <validation [control]="formData.get('giaTriHopDong')"></validation>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="flex col-12 p-0">
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Chi phí ABH'"
+                [control]="formData.get('chiPhiABH')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="chiPhiABH">
+              <validation [control]="formData.get('chiPhiABH')"></validation>
+            </div>
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Chi phí OPEX phân bổ'"
+                [control]="formData.get('chiPhiOpexPhanBo')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="chiPhiOpexPhanBo">
+              <validation [control]="formData.get('chiPhiOpexPhanBo')"></validation>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="flex col-12 p-0">
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Chi phí lương dự kiến'"
+                [control]="formData.get('chiPhiLuongDuKien')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="chiPhiLuongDuKien">
+              <validation [control]="formData.get('chiPhiLuongDuKien')"></validation>
+            </div>
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Chi phí lương thực tế'"
+                [control]="formData.get('chiPhiLuongThucTe')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="chiPhiLuongThucTe">
+              <validation [control]="formData.get('chiPhiLuongThucTe')"></validation>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="flex col-12 p-0">
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Lãi dự kiến'"
+                [control]="formData.get('laiDuKien')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="laiDuKien">
+              <validation [control]="formData.get('laiDuKien')"></validation>
+            </div>
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Lãi thực tế'"
+                [control]="formData.get('laiThucTe')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="laiThucTe">
+              <validation [control]="formData.get('laiThucTe')"></validation>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Kế hoạch">
+        <div class="row">
+          <div class="flex justify-content-end align-items-center">
+            <p-button icon="pi pi-spinner" label="Làm mới" severity="secondary" [rounded]="true" />
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </form>
+  <div class="row m-t-20 p-r-30">
+    <div class="flex justify-content-center">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Hủy" (click)="backLine()">
+      </p-button>
+      <p-button class="btn-save-dialog" label="Lưu" (click)="save()">
+      </p-button>
+    </div>
+  </div>
+</div>
+
+<p-toast key="tms" position="bottom-left"></p-toast>

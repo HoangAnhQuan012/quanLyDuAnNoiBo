@@ -1,0 +1,105 @@
+<div class="create-or-edit-chuyen-mon-wrap">
+  <div class="custome-header flex align-items-center justify-content-between">
+    <div class="custom-header-title color-111 f-w-500">
+      <h4>Thêm mới subtask</h4>
+    </div>
+    <div class="custom-header-action">
+      <p-button styleClass="p-button-rounded p-button-icon p-button-secondary" [text]="true" (click)="close()">
+        <img src="assets/customs/svgs/close-icon.svg" alt="" width="15px" height="15px">
+      </p-button>
+    </div>
+  </div>
+  <div class="custom-body">
+    <form [formGroup]="formData">
+      <div class="container">
+        <div class="col-lg-12 m-l-20 m-t-10">
+          <div class="form-group ui-fluid row m-t-20">
+            <div class="col-lg-6">
+              <span class="text-dark">Số giờ ước tính còn lại:</span>
+            </div>
+            <div class="col-lg-6">
+              <div class="ui-fluid row">
+                <div class="col-lg-2">
+                  <span class="text-dark">PM: {{ module.pm }}</span>
+                </div>
+                <div class="col-lg-2">
+                  <span class="text-dark">BA: {{ module.ba }}</span>
+                </div>
+                <div class="col-lg-2">
+                  <span class="text-dark">DEV: {{ module.dev }}</span>
+                </div>
+                <div class="col-lg-2">
+                  <span class="text-dark">TESTER: {{ module.test }}</span>
+                </div>
+                <div class="col-lg-2">
+                  <span class="text-dark">Tổng: {{ module.tongThoiGian }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group ui-fluid row m-t-36">
+            <div class="col-lg-6">
+              <app-label-validation class="block" [control]="formData.get('tenSubTask')" [title]="'Subtask  *'">
+              </app-label-validation>
+              <input class="form-control" type="text" formControlName="tenSubTask" pInputText />
+              <validation [control]="formData.get('tenSubTask')">
+              </validation>
+            </div>
+            <div class="col-lg-6">
+              <div class="ui-fluid row">
+                <div class="col-lg-2">
+                  <app-label-validation [control]="formData.get('pm')" [title]="'PM'">
+                  </app-label-validation>
+                  <input class="form-control" type="text" decimal formControlName='pm' pInputText
+                    (focus)="tinhGio()" />
+                </div>
+                <div class="col-lg-2">
+                  <app-label-validation [control]="formData.get('ba')" [title]="'BA'">
+                  </app-label-validation>
+                  <input class="form-control" type="text" decimal formControlName='ba' pInputText
+                    (focus)="tinhGio()" />
+                </div>
+                <div class="col-lg-2">
+                  <app-label-validation [control]="formData.get('dev')" [title]="'DEV'">
+                  </app-label-validation>
+                  <input class="form-control" type="text" decimal formControlName='dev' pInputText
+                    (focus)="tinhGio()" />
+                </div>
+                <div class="col-lg-2">
+                  <app-label-validation [control]="formData.get('test')" [title]="'TEST'">
+                  </app-label-validation>
+                  <input class="form-control" type="text" decimal formControlName='test' pInputText
+                    (focus)="tinhGio()" />
+                </div>
+                <div class="col-lg-2">
+                  <app-label-validation [control]="formData.get('tong')" [title]="'Tổng'">
+                  </app-label-validation>
+                  <input class="form-control" type="text" decimal formControlName='tong' pInputText />
+                </div>
+                <!-- <div class="col-lg-2 d-flex align-items-end">
+                  <p-button class="btn-delete-dialog" (click)="xoaSubtask(i)" icon="pi pi-trash"></p-button>
+                </div> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="form-group ui-fluid row m-t-20">
+            <div class="col-lg-12">
+              <p-button class="btn-save-dialog" (click)="themSubtask()" icon="pi pi-plus"
+                label="Thêm subtask"></p-button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="custom-footer">
+    <div class=" flex justify-content-end">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Hủy" (click)="close()">
+      </p-button>
+      <p-button [disabled]="disableButton || formData.invalid" class="btn-save-dialog" label="Lưu" (click)="save()">
+      </p-button>
+    </div>
+  </div>
+</div>

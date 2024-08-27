@@ -1,0 +1,72 @@
+<div class="row m-b-10">
+  <div class="flex justify-content-between align-items-center">
+    <h3 class="m-b-0">Phê duyệt chấm công</h3>
+  </div>
+</div>
+<div class="card">
+  <div class="row p-l-40 p-r-40 m-t-20">
+    <div class="col-9">
+      <span class="p-input-icon-left filterText">
+        <i class="pi pi-search m-l-10"></i>
+        <input type="text" class="filterText" placeholder="Tìm kiếm..." pInputText [(ngModel)]="keyword"
+          (keyup.enter)="getAllCC()" />
+      </span>
+    </div>
+    <div class="col-3">
+      <p-calendar appendTo="body" [iconDisplay]="'input'" [showIcon]="true" dateFormat="dd/mm/yy" [(ngModel)]="date"
+        [minDate]="minDateValue" [maxDate]="maxDateValue" placeholder="Từ ngày - đến ngày" selectionMode="range"
+        (onChange)="onChange($event)"></p-calendar>
+    </div>
+  </div>
+  <div class="row p-r-20 m-t-20">
+    <div class="flex justify-content-end align-items-center">
+      <p-button label="Từ chối" class="btn-delete-dialog m-r-5" (click)="tuChoiDuyet()" [disabled]="!enableBtn"></p-button>
+      <p-button class="btn-default" label="Duyệt" (click)="duyetChamCong()" [disabled]="!enableBtn"></p-button>
+    </div>
+  </div>
+  <div class="p-l-20 p-r-20 m-t-20">
+    <p-table #dt [value]="chamCongData" (onLazyLoad)="getAllCC($event)" [rows]="20" [(first)]="first"
+      [loading]="loading" [lazy]="true" styleClass="p-datatable-striped custom-table-container"
+      [paginator]="totalCount > 0" [totalRecords]="totalCount" [showFirstLastIcon]="false" responsiveLayout="scroll"
+      [rowsPerPageOptions]="rowPerPageOptions" [showCurrentPageReport]="true" [(selection)]="arrChamCongSelected"
+      currentPageReportTemplate="{{totalCount==0?'Hiển thị: 0-0/0':' Hiển thị: {first}-{last}/{totalRecords}'}} ">
+      <ng-template pTemplate="header">
+        <tr>
+          <th id="">
+            <p-tableHeaderCheckbox />
+          </th>
+          <th id="">#</th>
+          <th id="">
+            Nhân viên
+          </th>
+          <th id="" *ngFor="let cc of chamCongData[0]?.listChamCong">
+            {{ cc.ngayChamCong | date : 'dd/MM' }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-cc let-i="rowIndex">
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="cc"></p-tableCheckbox>
+          </td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ cc.tenNhanVien }}</td>
+          <td *ngFor="let time of cc.listChamCong" class="cursor-pointer">
+            <span class="style-trangThai"
+              (click)="viewDetail(time.ngayChamCong, cc.nhanVienId, time.chamCongId, cc.tenNhanVien)"
+              [ngClass]="handleStyleHour(time.trangThaiChamCong, time.nghiNuaNgay, time.isDayOff)">
+              {{ time.isDayOff === true ? '' : time.thoiGianChamCong }}
+            </span>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="10">Không có dữ liệu</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-toast key="tms" position="bottom-left"></p-toast>

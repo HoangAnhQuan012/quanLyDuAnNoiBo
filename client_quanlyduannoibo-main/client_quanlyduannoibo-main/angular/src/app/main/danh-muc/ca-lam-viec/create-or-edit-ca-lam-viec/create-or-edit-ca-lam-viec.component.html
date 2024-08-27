@@ -1,0 +1,61 @@
+<div class="create-or-edit-chuyen-mon-wrap">
+  <div class="custome-header flex align-items-center justify-content-between">
+    <div class="custom-header-title color-111 f-w-500">
+      <h4>Thêm mới chuyên môn</h4>
+    </div>
+    <div class="custom-header-action">
+      <p-button styleClass="p-button-rounded p-button-icon p-button-secondary" [text]="true" (click)="close()">
+        <img src="assets/customs/svgs/close-icon.svg" alt="" width="15px" height="15px">
+      </p-button>
+    </div>
+  </div>
+  <div class="custom-body">
+    <form [formGroup]="formData">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Mã ca làm việc'" [titleValidate]="' *'"
+              [control]="formData.get('maCaLamViec')"></app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="maCaLamViec">
+            <validation [control]="formData.get('maCaLamViec')"></validation>
+          </div>
+
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Giờ vào làm'" [titleValidate]="' *'"
+              [control]="formData.get('gioVaoLam')"></app-label-validation>
+              <p-calendar appendTo="body" formControlName="gioVaoLam"
+                [iconDisplay]="'input'" [showIcon]="true"
+                [timeOnly]="true" [hourFormat]="24" inputId="timeonly"></p-calendar>
+            <validation [control]="formData.get('gioVaoLam')"></validation>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Giờ tan làm'" [control]="formData.get('gioTanLam')">
+            </app-label-validation>
+            <p-calendar appendTo="body" formControlName="gioTanLam"
+              [iconDisplay]="'input'" [showIcon]="true"
+              [timeOnly]="true" [hourFormat]="24" inputId="timeonly"></p-calendar>
+            <validation [control]="formData.get('gioTanLam')"></validation>
+          </div>
+
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Mô tả'" [control]="formData.get('moTa')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="moTa">
+            <validation [control]="formData.get('moTa')"></validation>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="custom-footer">
+    <div class=" flex justify-content-end">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Hủy" (click)="close()">
+      </p-button>
+      <p-button [disabled]="disableButton" class="btn-save-dialog" label="Lưu" (click)="save()">
+      </p-button>
+    </div>
+  </div>
+</div>

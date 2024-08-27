@@ -1,0 +1,50 @@
+.custom-body {
+  height: 295px !important;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  -ms-overflow-style: none !important;
+  /* Ẩn thanh cuộn trên Internet Explorer */
+  scrollbar-width: none !important;
+
+  /* Ẩn thanh cuộn trên Firefox */
+  &::-webkit-scrollbar {
+    display: none !important;
+    /* Ẩn thanh cuộn trên các trình duyệt dựa trên WebKit (Chrome, Safari, Edge) */
+  }
+}
+
+.custom-body {
+  padding-bottom: 32px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-bottom: 15px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+::ng-deep {
+  app-create-or-edit-permission {
+
+    .p-button.p-button-secondary.p-button-text {
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .p-button.p-button-secondary.p-button-text:not(:disabled):hover {
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

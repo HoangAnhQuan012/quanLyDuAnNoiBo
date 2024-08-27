@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <img src="assets/customs/svgs/warning-icon.svg" alt="" width="42px" height="42px">
+  </div>
+  <div class="row">
+    <div class="col-12 flex align-items-center justify-content-center m-b-35 m-t-13">
+      <div class="text-title">
+        <span>Bạn có chắc chắn xóa {{ title }} không?</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-12 flex align-items-center justify-content-center">
+  <p-button label="Hủy" (click)="close()" class="btn-cancel-dialog m-r-12">
+  </p-button>
+  <p-button label="Xóa" (click)="save()" class="btn-delete-dialog">
+  </p-button>
+</div>

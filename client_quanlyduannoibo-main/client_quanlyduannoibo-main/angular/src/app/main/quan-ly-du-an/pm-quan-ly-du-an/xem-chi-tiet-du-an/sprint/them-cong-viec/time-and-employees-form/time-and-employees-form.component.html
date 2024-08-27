@@ -1,0 +1,32 @@
+<form [formGroup]="formData">
+  <div class="form-group ui-fluid row m-t-20">
+    <div class="row m-b-20">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-5">
+        <app-label-validation class="block" [title]="'Ngày bắt đầu  *'"
+          [control]="formData.get('ngayBatDau')"></app-label-validation>
+        <p-calendar appendTo="body" formControlName="ngayBatDau" [iconDisplay]="'input'" [showIcon]="true"
+          inputId="timeonly"></p-calendar>
+        <validation [control]="formData.get('ngayBatDau')"></validation>
+      </div>
+      <div class="col-lg-5">
+        <app-label-validation class="block" [title]="'Ngày kết thúc  *'"
+          [control]="formData.get('ngayKetThuc')"></app-label-validation>
+        <p-calendar appendTo="body" formControlName="ngayKetThuc" [iconDisplay]="'input'" [showIcon]="true"
+          inputId="timeonly"></p-calendar>
+        <validation [control]="formData.get('ngayKetThuc')"></validation>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10">
+        <app-label-validation class="block" [title]="'Nhân sự  *'"
+          [control]="formData.get('nhanSu')"></app-label-validation>
+        <p-multiSelect appendTo="body" [options]="nhanSu" formControlName="nhanSu" optionLabel="displayName" placeholder="Nhân sự" />
+        <validation [control]="formData.get('nhanSu')"></validation>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
+  </div>
+</form>

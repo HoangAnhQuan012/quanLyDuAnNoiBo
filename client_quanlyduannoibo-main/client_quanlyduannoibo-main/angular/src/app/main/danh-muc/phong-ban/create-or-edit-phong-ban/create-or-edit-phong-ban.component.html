@@ -1,0 +1,50 @@
+<div class="create-or-edit-chuyen-mon-wrap">
+  <div class="custome-header flex align-items-center justify-content-between">
+    <div class="custom-header-title color-111 f-w-500">
+      <h4>{{ id ? (this.isView ? 'Xem phòng ban' : 'Chỉnh sửa phòng ban') : 'Thêm mới phòng ban'}}</h4>
+    </div>
+    <div class="custom-header-action">
+      <p-button styleClass="p-button-rounded p-button-icon p-button-secondary" [text]="true" (click)="close()">
+        <img src="assets/customs/svgs/close-icon.svg" alt="" width="15px" height="15px">
+      </p-button>
+    </div>
+  </div>
+  <div class="custom-body">
+    <form [formGroup]="formData">
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Mã phòng ban'" [titleValidate]="' *'"
+              [control]="formData.get('maPhongBan')"></app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="maPhongBan">
+            <validation [control]="formData.get('maPhongBan')"></validation>
+          </div>
+
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Tên phòng bàn'" [titleValidate]="' *'"
+              [control]="formData.get('tenPhongBan')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="tenPhongBan">
+            <validation [control]="formData.get('tenPhongBan')"></validation>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <app-label-validation class="block" [title]="'Mô tả'" [control]="formData.get('moTa')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="moTa">
+            <validation [control]="formData.get('moTa')"></validation>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="custom-footer">
+    <div class=" flex justify-content-end">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Hủy" (click)="close()">
+      </p-button>
+      <p-button [disabled]="disableButton" class="btn-save-dialog" label="Lưu" (click)="save()">
+      </p-button>
+    </div>
+  </div>
+</div>

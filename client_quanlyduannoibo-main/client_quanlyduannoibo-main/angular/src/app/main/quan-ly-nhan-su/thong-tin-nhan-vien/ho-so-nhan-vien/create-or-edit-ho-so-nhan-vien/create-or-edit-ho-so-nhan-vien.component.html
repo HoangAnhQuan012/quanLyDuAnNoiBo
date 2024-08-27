@@ -1,0 +1,193 @@
+<div class="create-or-edit-chuyen-mon-wrap">
+  <div class="custome-header flex align-items-center justify-content-between">
+    <div class="custom-header-title color-111 f-w-500">
+      <h4>Thêm mới hồ sơ nhân viên</h4>
+    </div>
+    <div class="custom-header-action">
+      <p-button styleClass="p-button-rounded p-button-icon p-button-secondary" [text]="true" (click)="close()">
+        <img src="assets/customs/svgs/close-icon.svg" alt="" width="15px" height="15px">
+      </p-button>
+    </div>
+  </div>
+  <div class="custom-body">
+    <form [formGroup]="formData">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <app-label-validation class="block" [title]="'Người dùng'" [titleValidate]="' *'"
+              [control]="formData.get('nguoiDung')"></app-label-validation>
+            <p-dropdown appendTo="body" [options]="users" [filter]="true" filterBy="displayName"
+              optionLabel="displayName" formControlName="nguoiDung" [showClear]="true">
+            </p-dropdown>
+            <validation [control]="formData.get('nguoiDung')"></validation>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Mã nhân viên'" [titleValidate]="' *'"
+              [control]="formData.get('maNhanVien')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="maNhanVien">
+            <validation [control]="formData.get('maNhanVien')"></validation>
+          </div>
+
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Tên nhân viên'" [titleValidate]="' *'"
+              [control]="formData.get('tenNhanVien')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="tenNhanVien">
+            <validation [control]="formData.get('tenNhanVien')"></validation>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Ngày sinh'" [titleValidate]="' *'"
+              [control]="formData.get('ngaySinh')">
+            </app-label-validation>
+            <p-calendar styleClass="m-t-5" appendTo="body" formControlName="ngaySinh" [iconDisplay]="'input'"
+              [showIcon]="true"></p-calendar>
+            <validation [control]="formData.get('ngaySinh')"></validation>
+          </div>
+
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Giới tính'" [titleValidate]="' *'"
+              [control]="formData.get('gioiTinh')">
+            </app-label-validation>
+            <p-dropdown appendTo="body" [options]="gioiTinhOptions" optionLabel="displayName"
+              formControlName="gioiTinh">
+            </p-dropdown>
+            <validation [control]="formData.get('gioiTinh')"></validation>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Dân tộc'" [titleValidate]="' *'"
+              [control]="formData.get('danToc')">
+            </app-label-validation>
+            <p-dropdown appendTo="body" [options]="danTocs" [filter]="true" filterBy="displayName"
+              optionLabel="displayName" formControlName="danToc">
+            </p-dropdown>
+            <validation [control]="formData.get('danToc')"></validation>
+          </div>
+
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'CMND'" [control]="formData.get('cmnd')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="cmnd">
+            <validation [control]="formData.get('cmnd')"></validation>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Ngày cấp CMND'" [control]="formData.get('ngayCapCmnd')">
+            </app-label-validation>
+            <p-calendar styleClass="m-t-5" appendTo="body" formControlName="ngayCapCmnd" [iconDisplay]="'input'"
+              [showIcon]="true" dateFormat="dd/mm/yy"></p-calendar>
+            <validation [control]="formData.get('ngayCapCmnd')"></validation>
+          </div>
+
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Nơi cấp CMND'" [control]="formData.get('noiCapCmnd')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="noiCapCmnd">
+            <validation [control]="formData.get('noiCapCmnd')"></validation>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Nơi sinh'" [titleValidate]="' *'"
+              [control]="formData.get('noiSinh')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="noiSinh">
+            <validation [control]="formData.get('noiSinh')"></validation>
+          </div>
+
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Ngày vào công ty'" [titleValidate]="' *'"
+              [control]="formData.get('ngayVaoLam')">
+            </app-label-validation>
+            <p-calendar styleClass="m-t-5" appendTo="body" formControlName="ngayVaoLam" [iconDisplay]="'input'"
+              [showIcon]="true"></p-calendar>
+            <validation [control]="formData.get('ngayVaoLam')"></validation>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Chức danh'" [titleValidate]="' *'"
+              [control]="formData.get('chucDanh')">
+            </app-label-validation>
+            <p-dropdown appendTo="body" [options]="chucDanhs" [filter]="true" filterBy="displayName"
+              optionLabel="displayName" formControlName="chucDanh">
+            </p-dropdown>
+            <validation [control]="formData.get('chucDanh')"></validation>
+          </div>
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Phòng ban'" [control]="formData.get('phongBan')">
+            </app-label-validation>
+            <p-dropdown appendTo="body" [options]="phongBans" [filter]="true" filterBy="displayName"
+              optionLabel="displayName" formControlName="phongBan">
+            </p-dropdown>
+            <validation [control]="formData.get('phongBan')"></validation>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Số điện thoại'" [titleValidate]="' *'"
+              [control]="formData.get('soDienThoai')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="soDienThoai">
+            <validation [control]="formData.get('soDienThoai')"></validation>
+          </div>
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Hộ chiếu'" [control]="formData.get('hoChieu')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="hoChieu">
+            <validation [control]="formData.get('hoChieu')"></validation>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Email'" [titleValidate]="' *'"
+              [control]="formData.get('email')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="email" pInputText formControlName="email">
+            <validation [control]="formData.get('email')"></validation>
+          </div>
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Mã số thuế'" [control]="formData.get('maSoThue')">
+            </app-label-validation>
+            <input class="w-12 m-t-5" type="text" pInputText formControlName="maSoThue">
+            <validation [control]="formData.get('maSoThue')"></validation>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <app-label-validation class="block" [title]="'Ngày nghỉ việc'" [control]="formData.get('ngayNghiViec')">
+            </app-label-validation>
+            <p-calendar styleClass="m-t-5" appendTo="body" formControlName="ngayNghiViec" [iconDisplay]="'input'"
+              [showIcon]="true"></p-calendar>
+            <validation [control]="formData.get('ngayNghiViec')"></validation>
+          </div>
+          <div class="col-6"></div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="custom-footer">
+    <div class=" flex justify-content-end">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Hủy" (click)="close()">
+      </p-button>
+      <p-button class="btn-save-dialog" label="Lưu" (click)="save()">
+      </p-button>
+    </div>
+  </div>
+</div>

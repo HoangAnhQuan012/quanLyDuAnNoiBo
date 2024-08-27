@@ -1,0 +1,135 @@
+<form [formGroup]="formData">
+  <div class="row m-t-10 m-b-20">
+    <div class="col-lg-12">
+      <div class="form-group ui-fluid row">
+        <div class="col-lg-6">
+          <app-label-validation class="block" [control]="formData.get('tenSprint')"
+            [title]="'Tên sprint *'"></app-label-validation>
+          <input class="w-12" type="text" formControlName="tenSprint" pInputText />
+          <validation [control]="formData.get('tenSprint')">
+          </validation>
+        </div>
+        <div class="col-lg-6"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group ui-fluid row">
+        <div class="col-lg-6">
+          <app-label-validation class="block" [control]="formData.get('ngayBatDau')"
+            [title]="'Ngày bắt đầu *'"></app-label-validation>
+          <p-calendar appendTo="body" formControlName="ngayBatDau" [iconDisplay]="'input'" [showIcon]="true"
+            dateFormat="dd/mm/yy"></p-calendar>
+          <validation [control]="formData.get('ngayBatDau')">
+          </validation>
+        </div>
+        <div class="col-lg-6">
+          <app-label-validation class="block" [control]="formData.get('ngayKetThuc')"
+            [title]="'Ngày kết thúc *'"></app-label-validation>
+          <p-calendar appendTo="body" formControlName="ngayKetThuc" [iconDisplay]="'input'" [showIcon]="true"
+            dateFormat="dd/mm/yy"></p-calendar>
+          <validation [control]="formData.get('ngayKetThuc')">
+          </validation>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-t-32">
+    <p-accordion [multiple]="true">
+      <p-accordionTab *ngFor="let task of taskInfo" [selected]="true">
+        <ng-template class="m-t-28 task-header" pTemplate="header" select>
+          <div class="accordion-header">
+            <span>Task {{ task.tenTask }}</span>
+            <span>{{ task.tongSoGio + ' giờ' }}</span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <div class="container m-b-32">
+            <p-accordion [multiple]="true">
+              <p-accordionTab *ngFor="let subTask of task.subtasks" [selected]="true">
+                <ng-template class="m-t-28 subtask-header" pTemplate="header" select>
+                  <div class="accordion-header">
+                    <span>{{ subTask.tenSubtask }}</span>
+                    <div>
+                      <span *ngIf="isThucTien" class="m-r-20 pd" [ngClass]="handleStyleStatus(subTask.trangThaiSubtask)">{{
+                        handleShowStatus(subTask.trangThaiSubtask) }}</span>
+                      <span>{{ subTask.tongSoGio + ' giờ' }}</span>
+                    </div>
+                  </div>
+                </ng-template>
+
+                <div class="p-l-30 p-r-30">
+                  <div class="row">
+                    <div class="col-3">
+                      <app-label-validation class="block" [title]="'PM'"></app-label-validation>
+                      <div class="subtaskTime">
+                        <span>{{ subTask.pm }}</span>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <app-label-validation class="block" [title]="'DEV'"></app-label-validation>
+                      <div class="subtaskTime">
+                        <span>{{ subTask.dev }}</span>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <app-label-validation class="block" [title]="'TEST'"></app-label-validation>
+                      <div class="subtaskTime">
+                        <span>{{ subTask.tester }}</span>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <app-label-validation class="block" [title]="'BA'"></app-label-validation>
+                      <div class="subtaskTime">
+                        <span>{{ subTask.ba }}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <app-label-validation class="block" [title]="'Ngày bắt đầu'"></app-label-validation>
+                      <div class="subtaskTime">
+                        <span>{{ subTask.thoiGianBatDau | date: 'dd/MM/yyyy' }}</span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <app-label-validation class="block" [title]="'Ngày bắt đầu'"></app-label-validation>
+                      <div class="subtaskTime">
+                        <span>{{ subTask.thoiGianKetThuc | date: 'dd/MM/yyyy' }}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row m-b-32">
+                    <div class="col-12">
+                      <app-label-validation class="block" [title]="'Nhân sự'"></app-label-validation>
+                      <div class="flex subtaskTime">
+                        <div class="nhanSu-item" *ngFor="let nhanSu of subTask.nhanSu">
+                          <span>{{ nhanSu.displayName }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </p-accordionTab>
+            </p-accordion>
+          </div>
+        </ng-template>
+
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+
+  <div class="row m-t-32 m-b-32">
+    <div class="flex justify-content-center align-items-center">
+      <p-button *ngIf="!isHiddenThemCongViecBtn" class="btn-add-subtask" (click)="addSubtask()" icon="pi pi-plus"
+        label="Thêm công việc" />
+    </div>
+  </div>
+
+</form>

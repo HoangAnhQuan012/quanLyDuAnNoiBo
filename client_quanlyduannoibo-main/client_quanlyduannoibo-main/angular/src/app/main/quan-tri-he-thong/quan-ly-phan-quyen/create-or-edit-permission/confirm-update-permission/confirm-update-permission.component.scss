@@ -1,0 +1,38 @@
+.custom-header {
+  text-align: center !important;
+}
+
+.text-title {
+  color: #111;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+:host ::ng-deep.custom-btn-cancel {
+  background: #e2e8f0;
+  justify-content: center;
+  color: #111;
+  border-radius: 20px;
+  border: 1px solid #ededed;
+  font-weight: 500;
+  height: 40px;
+}
+
+:host ::ng-deep.custom-btn-cancel:hover {
+  background: #e2e8f0;
+  border: 1px solid #ededed;
+}
+
+:host ::ng-deep .p-button:focus {
+  box-shadow: none !important;
+}
+
+@media (max-width: 575px) {
+  :host ::ng-deep {
+    .title {
+      font-size: 20px;
+    }
+  }
+}

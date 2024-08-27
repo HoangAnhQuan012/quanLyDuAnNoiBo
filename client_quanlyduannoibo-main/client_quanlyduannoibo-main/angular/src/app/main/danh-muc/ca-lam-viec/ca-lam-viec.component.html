@@ -1,0 +1,70 @@
+<div class="row m-b-10">
+  <div class="flex justify-content-between align-items-center">
+    <h3 class="m-b-0">Quản lý ca làm việc</h3>
+    <div class="flex flex-wrap gap-3 justify-content-left">
+      <!-- <p-button class="custom-excel-color" label="Export Excel" icon="pi pi-file-export" severity="success"></p-button> -->
+      <p-button label="Thêm mới" icon="pi pi-plus" [rounded]="true" (click)="create()"></p-button>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="row p-l-40 p-r-40 m-t-20">
+    <div class="col-12">
+      <span class="p-input-icon-left filterText">
+        <i class="pi pi-search m-l-10"></i>
+        <input type="text" class="filterText" placeholder="Tìm kiếm..." pInputText [(ngModel)]="keyword"
+          (keyup.enter)="getAllCaLamViec(null)"/>
+    </span>
+    </div>
+  </div>
+  <div class="p-l-20 p-r-20">
+    <p-table #dt [value]="caLamViecData" (onLazyLoad)="getAllCaLamViec($event)" dataKey="id" [rows]="20"
+      [(first)]="first" [loading]="loading" [lazy]="true" styleClass="p-datatable-striped" [paginator]="totalCount > 0"
+      [totalRecords]="totalCount" [showFirstLastIcon]="false" responsiveLayout="scroll"
+      [showCurrentPageReport]="true" [rowsPerPageOptions]="rowPerPageOptions"
+      currentPageReportTemplate="{{totalCount==0?'Hiển thị: 0-0/0':' Hiển thị: {first}-{last}/{totalRecords}'}} ">
+      <ng-template pTemplate="header">
+        <tr>
+          <th id="options"></th>
+          <th id="stt">STT</th>
+          <th pSortableColumn="maCaLamViec" id="CaLamViecCode">
+            Mã ca làm việc <p-sortIcon field="maCaLamViec"></p-sortIcon>
+          </th>
+          <th pSortableColumn="gioVaoLam" id="gioVaoLamViec">
+            Giờ vào làm việc <p-sortIcon field="gioVaoLam"></p-sortIcon>
+          </th>
+          <th pSortableColumn="gioTanLam" id="gioTanLamViec">
+            Giờ tan làm việc <p-sortIcon field="gioTanLam"></p-sortIcon>
+          </th>
+          <th pSortableColumn="mota" id="ghiChu">
+            Ghi chú <p-sortIcon field="mota"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-caLamViec let-i="rowIndex">
+        <tr>
+          <td>
+            <div ngbDropdown class="d-inline-block">
+              <i class="pi pi-ellipsis-v cursor-pointer" id="dropdownBasic1" ngbDropdownToggle></i>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="viewDetail(caLamViec.id)">Xem</button>
+                <button ngbDropdownItem (click)="update(caLamViec.id)">Cập nhật</button>
+                <button ngbDropdownItem (click)="delete(caLamViec.id)">Xóa</button>
+              </div>
+            </div>
+          </td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ caLamViec.maCaLamViec }}</td>
+          <td>{{ caLamViec.gioVaoLam }}</td>
+          <td>{{ caLamViec.gioTanLam }}</td>
+          <td>{{ caLamViec.mota }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="10">Không có dữ liệu</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

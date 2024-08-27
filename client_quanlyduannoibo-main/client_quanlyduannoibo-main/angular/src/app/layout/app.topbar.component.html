@@ -1,0 +1,70 @@
+<div class="layout-topbar">
+  <a class="layout-topbar-logo" routerLink="">
+    <img src="assets/customs/svgs/logo-project.svg" alt="logo">
+  </a>
+
+  <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+    <i class="pi pi-bars"></i>
+  </button>
+
+  <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button"
+    (click)="layoutService.showProfileSidebar()">
+    <i class="pi pi-ellipsis-v"></i>
+  </button>
+
+
+  <div #topbarmenu class="layout-topbar-menu" style="align-items: center;"
+    [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+    <div ngbDropdown class="d-inline-block m-r-20">
+      <i class="pi pi-bell text-2xl cursor-pointer" style="font-size: 8px" id="dropdownBasic1" ngbDropdownToggle pBadge
+        [value]="notifyNumber" severity="danger"></i>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="noti-cover">
+          <div class="notificationContainer">
+            <div class="notificationContainer__title">
+              <span>Thông báo</span>
+            </div>
+            <div class="notificationContainer__content">
+              <ng-container *ngFor="let notify of notifications">
+                <div class="notificationContainer__content--item">
+                  <div class="icon m-r-5">
+                    <img *ngIf="notify.trangThaiSubtask === 1" src="../../assets/images/logo/warning-icon.svg" alt="">
+                    <img *ngIf="notify.trangThaiSubtask === 2" src="../../assets/images/logo/checkbox-icon.svg" alt="">
+                    <img *ngIf="notify.trangThaiSubtask === 3" src="../../assets/images/logo/info-icon.svg" alt="">
+                  </div>
+                  <div class="content">
+                    <div class="content__detail">
+                      <span>Công việc {{ notify.tenTask }} {{ notify.trangThai }}.</span>
+                    </div>
+                    <div class="content__time">
+                      <span>{{ notify.time }}</span>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div class="notificationContainer__footer">
+              <span class="style-text">Xem tất cả...</span>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <label class="popup mt-2">
+      <input type="checkbox">
+      <div class="burger" tabindex="0">
+        <p-avatar class="popup" image="assets/customs/pngs/avatar.png" size="large" shape="circle"></p-avatar>
+      </div>
+      <nav class="popup-window mt-2">
+        <ul>
+          <li>
+            <button (click)="logout()">
+              <i class="pi pi-sign-out"></i>
+              <span>Đăng xuất</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </label>
+    <p>{{ username }}</p>
+  </div>
+</div>

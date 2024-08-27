@@ -1,0 +1,68 @@
+.custom-body {
+  height: 775px !important;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  -ms-overflow-style: none !important;
+  /* Ẩn thanh cuộn trên Internet Explorer */
+  scrollbar-width: none !important;
+
+  /* Ẩn thanh cuộn trên Firefox */
+  &::-webkit-scrollbar {
+    display: none !important;
+    /* Ẩn thanh cuộn trên các trình duyệt dựa trên WebKit (Chrome, Safari, Edge) */
+  }
+
+  .text-time,
+  .text-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #0095ff;
+  }
+
+  .text-title {
+    font-size: 20px;
+  }
+
+  .style-card {
+    border-radius: 10px;
+    background: #f7fafc;
+    border: none;
+    height: auto;
+
+    .style-padding {
+      padding: 24px 16px;
+    }
+  }
+}
+
+:host ::ng-deep p-fileupload {
+  border: 2px dashed #99A1B7;
+  padding: 0;
+}
+
+::ng-deep {
+  app-create-or-edit-cham-cong {
+    .p-calendar {
+      width: 100%;
+    }
+
+    .p-dropdown {
+      width: 100%;
+    }
+
+    .p-fileupload .p-fileupload-buttonbar {
+      background: #FFFFFF;
+      display: flex;
+      justify-content: center;
+    }
+    .p-fileupload .p-fileupload-content {
+      border: none
+    }
+
+    .pi.pi-trash {
+      color: #FF0000;
+      font-weight: initial;
+    }
+  }
+}

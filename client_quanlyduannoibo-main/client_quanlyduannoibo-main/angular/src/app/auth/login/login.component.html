@@ -1,0 +1,37 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <img src="assets/customs/svgs/logo-project-center.svg" alt="Project logo" height="50" class="mb-5 flex-shrink-0">
+        <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+            <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+                <div class="text-center mb-5">
+                    <span class="text-600 font-medium">Đăng nhập để tiếp tục</span>
+                </div>
+
+                <div [formGroup]="formData">
+                  <!-- Email -->
+                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
+                    <input
+                      id="email1" type="text" placeholder="Địa chỉ Email" pInputText
+                      class="w-full md:w-30rem" style="padding:1rem"
+                      (keydown.enter)="login()"
+                      formControlName="Email"
+                      [maxlength]="256">
+                      <validation [control]="formData.get('Email')"></validation>
+
+                  <!-- Password -->
+                    <label for="password1" class="block text-900 font-medium text-xl mb-2 m-t-10">Mật khẩu</label>
+                    <input
+                      id="password1" placeholder="Mật khẩu" type="password" pInputText
+                      class="w-full md:w-30rem" style="padding:1rem"
+                      (keydown.enter)="login()" formControlName="Password" [maxlength]="128"/>
+                    <validation [control]="formData.get('Password')"></validation>
+                    <div class="custom-center mt-5">
+                      <button [loading]="loading" [disabled]="loading" pButton pRipple label="Đăng nhập" class="h-32 p-3" (click)="login()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-toast key="tms" position="bottom-left"></p-toast>

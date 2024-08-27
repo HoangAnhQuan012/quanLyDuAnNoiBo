@@ -1,0 +1,63 @@
+<div class="row m-b-10">
+  <div class="flex justify-content-left align-items-center">
+    <h3 class="m-b-0">Nhân viên quản lý dự án</h3>
+  </div>
+</div>
+<div class="card">
+  <p-tabView>
+    <p-tabPanel header="Kế hoạch">
+      <div class="row m-b-32">
+        <div class="flex justify-content-center align-items-center">
+          <h5 class="m-b-28 title">Dự án: {{ tenDuAn }}</h5>
+        </div>
+        <div class="p-l-30 p-r-30">
+          <p-accordion class="sprint" *ngFor="let sprint of sprintsKeHoach" [multiple]="true">
+            <p-accordionTab [selected]="true">
+              <ng-template pTemplate="header" select>
+                <div class="accordion-header">
+                  <span>{{ sprint.tenSprint }}</span>
+                  <span>{{ sprint.tongSoGio + ' giờ' }}</span>
+                </div>
+              </ng-template>
+              <div class="container">
+                <app-sprint [duAnId]="duAnId" [sprintDto]="sprint" [isHiddenThemCongViecBtn]="true"
+                  (moduleInfoValueForSave)="onSaveSprintValue($event, sprint.id)" [isDisableForm]="true"></app-sprint>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Thực tiễn">
+      <div class="row m-b-32">
+        <div class="flex justify-content-center align-items-center">
+          <h5 class="m-b-28 title">Dự án: {{ tenDuAn }}</h5>
+        </div>
+        <div class="p-l-30 p-r-30">
+          <p-accordion class="sprint" *ngFor="let sprint of sprintsThucTe" [multiple]="true">
+            <p-accordionTab [selected]="true">
+              <ng-template pTemplate="header" select>
+                <div class="accordion-header">
+                  <span>{{ sprint.tenSprint }}</span>
+                  <span>{{ sprint.tongSoGio + ' giờ' }}</span>
+                </div>
+              </ng-template>
+              <div class="container">
+                <app-sprint [duAnId]="duAnId" [sprintDto]="sprint" [isHiddenThemCongViecBtn]="true" [isThucTien]="true"
+                  (moduleInfoValueForSave)="onSaveSprintValue($event, sprint.id)" [isDisableForm]="true"></app-sprint>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+  <div class="row m-t-20 p-r-30">
+    <div class="flex justify-content-center">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Hủy" (click)="backLine()">
+      </p-button>
+    </div>
+  </div>
+</div>
+
+<p-toast key="tms" position="bottom-left"></p-toast>

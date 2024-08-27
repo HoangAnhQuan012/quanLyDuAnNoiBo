@@ -1,0 +1,95 @@
+<div class="create-or-edit-chuyen-mon-wrap">
+  <div class="custome-header flex align-items-center justify-content-between">
+    <div class="custom-header-title color-111 f-w-500">
+      <h4>Thêm mới công việc</h4>
+    </div>
+    <div class="custom-header-action">
+      <p-button styleClass="p-button-rounded p-button-icon p-button-secondary" [text]="true" (click)="close()">
+        <img src="assets/customs/svgs/close-icon.svg" alt="" width="15px" height="15px">
+      </p-button>
+    </div>
+  </div>
+  <div class="custom-body">
+    <p-accordion [multiple]="true">
+      <p-accordionTab *ngFor="let task of tasks" [selected]="true">
+        <ng-template pTemplate="header">
+          <div class="accordion-header">
+            <span>{{ task.tenModule }}</span>
+            <span>{{ task.tongThoiGian + ' giờ' }}</span>
+          </div>
+        </ng-template>
+        <div class="col-lg-12 m-l-20 m-t-10">
+          <ng-container *ngFor="let subtask of task.subTasks; let i = index">
+            <div class="form-group ui-fluid row m-t-20">
+              <div class="col-lg-1 d-flex align-items-center">
+                <p-checkbox [disabled]="handleDisableCheckbox(subtask.trangThaiSubtask)" [value]="subtask" [(ngModel)]="subTaskSelect"
+                  (ngModelChange)="handleShowTimeAndEmployees($event, subtask)"></p-checkbox>
+              </div>
+              <div class="col-lg-5">
+                <app-label-validation class="block" [title]="'Subtask ' + (i + 1) + ' *'">
+                </app-label-validation>
+                <div class="subtaskName">
+                  <span>{{ subtask.tenSubtask }}</span>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="ui-fluid row">
+                  <div class="col-lg-2">
+                    <app-label-validation [title]="'PM'">
+                    </app-label-validation>
+                    <div class="subtaskTime">
+                      <span>{{ subtask.pm }}</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
+                    <app-label-validation [title]="'DEV'"></app-label-validation>
+                    <div class="subtaskTime">
+                      <span>{{ subtask.dev }}</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
+                    <app-label-validation [title]="'TEST'">
+                    </app-label-validation>
+                    <div class="subtaskTime">
+                      <span>{{ subtask.tester }}</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
+                    <app-label-validation [title]="'BA'">
+                    </app-label-validation>
+                    <div class="subtaskTime">
+                      <span>{{ subtask.ba }}</span>
+                    </div>
+                  </div>
+                  <div class="col-lg-2">
+                    <app-label-validation [title]="'Tổng'">
+                    </app-label-validation>
+                    <div class="subtaskTime">
+                      <span>{{ subtask.tongSoGio }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <app-time-and-employees-form *ngIf="subTaskSelect.includes(subtask)" [subTaskId]="subtask.subtaskId"
+              [formData]="subTaskFormData[subtask.subtaskId]" [subTaskInfo]="subTaskInfo" [sprint]="sprint"
+              (timeAndEmployeesValue)="onTimeAndEmployeesValueChange($event, subtask.subtaskId)"></app-time-and-employees-form>
+          </ng-container>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+
+    <!-- <div *ngIf="tasks.length === 0">
+      <h1>Dự án chưa có Task nào</h1>
+    </div> -->
+  </div>
+
+  <div class="custom-footer">
+    <div class="flex justify-content-end">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Hủy" (click)="close()">
+      </p-button>
+      <p-button [disabled]="disableButton" class="btn-save-dialog" label="Lưu" (click)="save()">
+      </p-button>
+    </div>
+  </div>
+</div>

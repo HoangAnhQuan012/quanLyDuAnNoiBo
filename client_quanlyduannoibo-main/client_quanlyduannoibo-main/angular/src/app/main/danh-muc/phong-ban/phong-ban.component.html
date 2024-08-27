@@ -1,0 +1,68 @@
+<div class="row m-b-10">
+  <div class="flex justify-content-between align-items-center">
+    <h3 class="m-b-0">Quản lý phòng ban</h3>
+    <div class="flex flex-wrap gap-3 justify-content-left">
+      <!-- <p-button class="custom-excel-color" label="Export Excel" icon="pi pi-file-export" severity="success"></p-button> -->
+      <p-button label="Thêm mới" icon="pi pi-plus" [rounded]="true" (click)="create()"></p-button>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="row p-l-40 p-r-40 m-t-20">
+    <div class="col-12">
+      <span class="p-input-icon-left filterText">
+        <i class="pi pi-search m-l-10"></i>
+        <input type="text" class="filterText" placeholder="Tìm kiếm..." pInputText [(ngModel)]="keyword"
+          (keyup.enter)="getAllPhongBan(null)"/>
+    </span>
+    </div>
+  </div>
+  <div class="p-l-20 p-r-20">
+    <p-table #dt [value]="phongBanData" (onLazyLoad)="getAllPhongBan($event)" dataKey="id" [rows]="20"
+      [(first)]="first" [loading]="loading" [lazy]="true" styleClass="p-datatable-striped" [paginator]="totalCount > 0"
+      [totalRecords]="totalCount" [showFirstLastIcon]="false" responsiveLayout="scroll"
+      [rowsPerPageOptions]="rowPerPageOptions" [showCurrentPageReport]="true"
+      currentPageReportTemplate="{{totalCount==0?'Hiển thị: 0-0/0':' Hiển thị: {first}-{last}/{totalRecords}'}}">
+      <ng-template pTemplate="header">
+        <tr>
+          <th id="options"></th>
+          <th id="stt">STT</th>
+          <th pSortableColumn="maPhongBan" id="roomCode">
+            Mã phòng ban <p-sortIcon field="maPhongBan"></p-sortIcon>
+          </th>
+          <th pSortableColumn="tenPhongBan" id="roomName">
+            Tên phòng ban <p-sortIcon field="tenPhongBan"></p-sortIcon>
+          </th>
+          <th pSortableColumn="moTa" id="description">
+            Mô tả <p-sortIcon field="moTa"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-phongBan let-i="rowIndex">
+        <tr>
+          <td>
+            <div ngbDropdown class="d-inline-block">
+              <i class="pi pi-ellipsis-v cursor-pointer" id="dropdownBasic1" ngbDropdownToggle></i>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="viewDetail(phongBan.id)">Xem</button>
+                <button ngbDropdownItem (click)="update(phongBan.id)">Cập nhật</button>
+                <button ngbDropdownItem (click)="delete(phongBan.id)">Xóa</button>
+              </div>
+            </div>
+          </td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ phongBan.maPhongBan }}</td>
+          <td>{{ phongBan.tenPhongBan }}</td>
+          <td>{{ phongBan.moTa }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="10">Không có dữ liệu</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-toast key="tms" position="bottom-left"></p-toast>

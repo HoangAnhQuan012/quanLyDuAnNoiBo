@@ -1,0 +1,106 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/layout/styles/layout/layout.scss";
+
+/* PrimeNG */
+@import "assets/demo/styles/flags/flags.css";
+@import "assets/demo/styles/badges.scss";
+@import "assets/demo/styles/code.scss";
+@import './assets/customs/sass/_generate.scss';
+@import './assets/customs/sass/custom-primeng.scss';
+@import "../node_modules/primeflex/primeflex.scss";
+@import "assets/customs/sass/custom-ng-bootstrap.scss";
+
+// Bootstrap icons
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+// Ng-Bootstrap
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+// body,
+// body .p-component {
+//   margin: 0;
+//   font-family: "Inter var", sans-serif !important;
+// }
+
+// * {
+//   font-family: "Inter var", sans-serif !important;
+// }
+
+@keyframes donut-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+:root {
+  --lpx-logo: url('/assets/images/logo/logo-light.png');
+  --lpx-logo-icon: url('/assets/images/logo/logo-light-thumbnail.png');
+}
+
+.donut {
+  display: inline-block;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #7983ff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: donut-spin 1.2s linear infinite;
+
+  &.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+}
+
+.filterText {
+  width: 100%;
+  height: 40px;
+  background: #E9EAED;
+  border-radius: 2rem !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.confirmation {
+  display: none !important;
+}
+
+.nhan-cu-icon,
+.cham-cong-icon,
+.qlda-icon,
+.bao-cao-icon,
+.quan-tri-he-thong-icon,
+.dashboard-icon {
+  background: url(assets/images/logo/nhan-su-icon.svg) no-repeat;
+  height: 22px;
+  width: 22px;
+}
+
+.cham-cong-icon {
+  background: url(assets/images/logo/cham-cong-icon.svg) no-repeat;
+}
+
+.qlda-icon {
+  background: url(assets/images/logo/qlda-icon.svg) no-repeat;
+}
+
+.bao-cao-icon {
+  background: url(assets/images/logo/bao-cao-icon.svg) no-repeat;
+}
+
+.quan-tri-he-thong-icon {
+  background: url(assets/images/logo/quan-tri-he-thong-icon.svg) no-repeat;
+}
+
+.dashboard-icon {
+  background: url(assets/images/logo/dashboard-icon.svg) no-repeat;
+}

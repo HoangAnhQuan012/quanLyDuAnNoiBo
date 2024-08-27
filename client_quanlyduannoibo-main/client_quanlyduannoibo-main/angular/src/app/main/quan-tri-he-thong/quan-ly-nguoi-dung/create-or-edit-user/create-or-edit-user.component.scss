@@ -1,0 +1,24 @@
+::ng-deep {
+  app-create-or-edit-user {
+    .p-dropdown {
+      margin-top: 5px;
+      width: 100%;
+    }
+  }
+}
+
+.custom-body {
+  height: 493px !important;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  -ms-overflow-style: none !important;
+  /* Ẩn thanh cuộn trên Internet Explorer */
+  scrollbar-width: none !important;
+
+  /* Ẩn thanh cuộn trên Firefox */
+  &::-webkit-scrollbar {
+    display: none !important;
+    /* Ẩn thanh cuộn trên các trình duyệt dựa trên WebKit (Chrome, Safari, Edge) */
+  }
+}

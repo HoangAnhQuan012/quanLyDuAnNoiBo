@@ -1,0 +1,29 @@
+.title {
+  color: #3e97ff;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+::ng-deep {
+  app-nhan-vien-xem-chi-tiet {
+    .p-panelMenu {
+      width: 100%;
+    }
+
+    .subtaskName,
+    .subtaskTime {
+      width: 100%;
+      height: 36px;
+      background: #e9eaed;
+      border-radius: 5px;
+      padding: 5px 20px;
+      display: flex;
+      align-items: center;
+    }
+
+
+    .p-accordion .p-accordion-content {
+      padding: 32px;
+    }
+  }
+}

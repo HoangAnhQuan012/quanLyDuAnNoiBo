@@ -1,0 +1,131 @@
+<div class="create-or-edit-chuyen-mon-wrap">
+  <div class="custome-header flex align-items-center justify-content-between">
+    <div class="custom-header-title color-111 f-w-500">
+      <h4>Chi tiết chấm công nhân viên: {{ tenNhanVien }}</h4>
+    </div>
+    <div class="custom-header-action">
+      <p-button styleClass="p-button-rounded p-button-icon p-button-secondary" [text]="true" (click)="close()">
+        <img src="assets/customs/svgs/close-icon.svg" alt="" width="15px" height="15px">
+      </p-button>
+    </div>
+  </div>
+  <div class="custom-body">
+    <!-- <div class="container"> -->
+    <p-table #dt [value]="chamCongData" (onLazyLoad)="getAllChamCong($event)" [rows]="20" [(first)]="first"
+      [loading]="loading" [lazy]="true" styleClass="p-datatable-striped m-t-32" [totalRecords]="totalCount"
+      [showFirstLastIcon]="false" responsiveLayout="scroll" [showCurrentPageReport]="true" [(selection)]="arrChamCongSelected">
+      <ng-template pTemplate="header">
+        <tr>
+          <!-- <th id=""></th> -->
+          <th id=""><p-tableHeaderCheckbox /></th>
+          <th id="stt">STT</th>
+          <th pSortableColumn="projectName" id="projectName">
+            Ngày <p-sortIcon field="userName"></p-sortIcon>
+          </th>
+          <th pSortableColumn="customer" id="customer">
+            Sprint <p-sortIcon field="customer"></p-sortIcon>
+          </th>
+          <th pSortableColumn="status" id="status">
+            Task <p-sortIcon field="status"></p-sortIcon>
+          </th>
+          <th pSortableColumn="ngayBatDau" id="ngayBatDau">
+            Subtask <p-sortIcon field="ngayBatDau"></p-sortIcon>
+          </th>
+          <th pSortableColumn="ngayKetThuc" id="ngayKetThuc">
+            Kiểu việc <p-sortIcon field="ngayKetThuc"></p-sortIcon>
+          </th>
+          <th pSortableColumn="ngayKetThuc" id="ngayKetThuc">
+            Loại hình <p-sortIcon field="ngayKetThuc"></p-sortIcon>
+          </th>
+          <th pSortableColumn="ngayKetThuc" id="ngayKetThuc">
+            Thời gian <p-sortIcon field="ngayKetThuc"></p-sortIcon>
+          </th>
+          <th pSortableColumn="ngayKetThuc" id="ngayKetThuc">
+            Trạng thái công việc <p-sortIcon field="ngayKetThuc"></p-sortIcon>
+          </th>
+          <th pSortableColumn="ngayKetThuc" id="ngayKetThuc">
+            Trạng thái phê duyệt <p-sortIcon field="ngayKetThuc"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-cc let-i="rowIndex" let-expanded="expanded">
+        <tr>
+          <!-- <td>
+            <p-button type="button" pRipple [pRowToggler]="product" [text]="true" [rounded]="true" [plain]="true"
+              [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'" />
+          </td> -->
+          <td>
+            <p-tableCheckbox [value]="cc" />
+          </td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ cc.ngayChamCong | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ cc.tenSprint }}</td>
+          <td>{{ cc.tenTask }}</td>
+          <td>{{ cc.tenSubtask }}</td>
+          <td>{{ cc.kieuViec }}</td>
+          <td>{{ cc.loaiHinh }}</td>
+          <td>{{ cc.thoiGian }}h</td>
+          <td [ngClass]="handleShowtrangThaiCongViec(cc.trangThaiSubtask)">{{
+            showTrangThaiCongViec(cc.trangThaiSubtask) }}</td>
+          <td>
+            <span class="style-trangThai" [ngClass]="handleShowStatusCC(cc.trangThaiChamCong)">
+              {{ showTrangThaiCC(cc.trangThaiChamCong) }}
+            </span>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="rowexpansion" let-product>
+        <tr>
+          <td colspan="7">
+            <div class="p-3">
+              <p-table [value]="product.orders" dataKey="id">
+                <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">Id <p-sortIcon field="price" /></th>
+          <th pSortableColumn="customer">Customer <p-sortIcon field="customer" /></th>
+          <th pSortableColumn="date">Date <p-sortIcon field="date" /></th>
+          <th pSortableColumn="amount">Amount <p-sortIcon field="amount" /></th>
+          <th pSortableColumn="status">Status <p-sortIcon field="status" /></th>
+          <th style="width: 4rem"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-order>
+        <tr>
+          <td>{{ order.id }}</td>
+          <td>{{ order.customer }}</td>
+          <td>{{ order.date }}</td>
+          <td>{{ order.amount | currency : 'USD' }}</td>
+          <td>
+            <p-tag [value]="order.status" [severity]="getStatusSeverity(order.status)" />
+          </td>
+          <td><p-button type="button" icon="pi pi-search" /></td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6">There are no order for this product yet.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  </td>
+  </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td class="text-center" colspan="10">Không có dữ liệu</td>
+    </tr>
+  </ng-template>
+  </p-table>
+  <!-- </div> -->
+</div>
+
+<div class="custom-footer">
+  <div class=" flex justify-content-end">
+    <p-button class="m-r-12 btn-delete-dialog" severity="danger" label="Từ chối" (click)="tuChoi()" [disabled]="disableBtn">
+    </p-button>
+    <p-button class="btn-save-dialog" label="Duyệt" (click)="duyet()" [disabled]="disableBtn">
+    </p-button>
+  </div>
+</div>
+</div>

@@ -1,0 +1,174 @@
+<div class="row m-b-10">
+  <div class="flex justify-content-left align-items-center">
+    <h3 class="m-b-0">PM quản lý dự án</h3>
+  </div>
+</div>
+<div class="card">
+  <p-tabView [(activeIndex)]="activeIndex">
+    <p-tabPanel header="Đầu việc">
+      <div class="row m-b-32">
+        <div class="flex justify-content-center align-items-center">
+          <h5 class="m-b-28 title">Dự án: {{ tenDuAn }}</h5>
+        </div>
+        <div class="p-l-30 p-r-30">
+          <div class="row">
+            <div class="flex col-12 p-0">
+              <div class="col-12">
+                <p-accordion [multiple]="true">
+                  <p-accordionTab *ngFor="let module of modules" [selected]="true">
+                    <ng-template class="m-t-28" pTemplate="header" select>
+                      <div class="accordion-header">
+                        <span>Task {{ module.tenModule }}</span>
+                        <span>{{ module.tongThoiGian + ' giờ' }}</span>
+                      </div>
+                    </ng-template>
+
+                    <div class="col-lg-12 m-l-20 m-t-10">
+                      <ng-container *ngFor="let subtask of module.subTasks; let i = index">
+                        <div class="form-group ui-fluid row m-t-20">
+                          <div class="col-lg-5">
+                            <app-label-validation class="block" [title]="'Subtask ' + (i + 1) + ' *'">
+                            </app-label-validation>
+                            <div class="subtaskName">
+                              <span>{{ subtask.tenSubtask }}</span>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                            <div class="ui-fluid row">
+                              <div class="col-lg-2">
+                                <app-label-validation [title]="'PM'">
+                                </app-label-validation>
+                                <div class="subtaskTime">
+                                  <span>{{ subtask.pm }}</span>
+                                </div>
+                              </div>
+                              <div class="col-lg-2">
+                                <app-label-validation [title]="'DEV'"></app-label-validation>
+                                <div class="subtaskTime">
+                                  <span>{{ subtask.dev }}</span>
+                                </div>
+                              </div>
+                              <div class="col-lg-2">
+                                <app-label-validation [title]="'TEST'">
+                                </app-label-validation>
+                                <div class="subtaskTime">
+                                  <span>{{ subtask.tester }}</span>
+                                </div>
+                              </div>
+                              <div class="col-lg-2">
+                                <app-label-validation [title]="'BA'">
+                                </app-label-validation>
+                                <div class="subtaskTime">
+                                  <span>{{ subtask.ba }}</span>
+                                </div>
+                              </div>
+                              <div class="col-lg-2">
+                                <app-label-validation [title]="'Tổng'">
+                                </app-label-validation>
+                                <div class="subtaskTime">
+                                  <span>{{ subtask.tongSoGio }}</span>
+                                </div>
+                              </div>
+                              <div class="col-lg-1 d-flex align-items-end">
+                                <p-button class="btn-cancel-dialog" (click)="editSubTask(module.id, subtask.subtaskId)"
+                                  icon="pi pi-pencil"></p-button>
+                              </div>
+                              <div class="col-lg-1 d-flex align-items-end" style="margin-left: -30px;">
+                                <p-button class="btn-delete-dialog"
+                                  (click)="xoaSubtask(subtask.subtaskId, subtask.tenSubTask)"
+                                  icon="pi pi-trash"></p-button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                    <div class="col-lg-12 m-t-20 m-l-20 m-b-32">
+                      <p-button class="btn-add-subtask" (click)="themSubtask(module.id)" icon="pi pi-plus"
+                        label="Thêm subtask"></p-button>
+                    </div>
+                  </p-accordionTab>
+                </p-accordion>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Kế hoạch">
+      <div class="row m-b-32">
+        <div class="flex justify-content-center align-items-center">
+          <h5 class="m-b-28 title">Dự án: {{ tenDuAn }}</h5>
+        </div>
+        <div class="p-l-30 p-r-30">
+          <div class="row m-b-28">
+            <div class="flex justify-content-end align-items-center">
+              <p-button class="btn-default" (click)="addSprint()" icon="pi pi-plus" label="Thêm sprint" />
+            </div>
+          </div>
+          <p-accordion class="sprint" *ngFor="let sprint of sprints" [multiple]="true">
+            <p-accordionTab [selected]="true">
+              <ng-template pTemplate="header" select>
+                <div class="accordion-header">
+                  <span>{{ sprint.tenSprint }}</span>
+                  <span>{{ sprint.tongSoGio + ' giờ' }}</span>
+                </div>
+              </ng-template>
+
+              <div class="container">
+                <app-sprint [duAnId]="duAnId" [sprintDto]="sprint" [isHiddenThemCongViecBtn]="false"
+                  (moduleInfoValueForSave)="onSaveSprintValue($event, sprint.id)" [isDisableForm]="false"></app-sprint>
+              </div>
+
+              <ng-template pTemplate="footer">
+                <div class="footer-cover">
+                  <div class="row m-t-10 m-r-24">
+                    <div class="flex justify-content-end align-items-center">
+                      <p-button class="btn-default m-r-12" label="Lưu" (click)="save()"></p-button>
+                      <p-button
+                        [disabled]="handleDisablePheDuyet(sprint.trangThaiSprint, sprint.tasks) && disableBtnPheDuyet"
+                        [loading]="guiPheDuyetLoading" class="btn-default" (click)="GuiPheDuyet(sprint.id)"
+                        label="Gửi phê duyệt"></p-button>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </p-accordionTab>
+          </p-accordion>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Thực hiện">
+      <div class="row m-b-32">
+        <div class="flex justify-content-center align-items-center">
+          <h5 class="m-b-28 title">Dự án: {{ tenDuAn }}</h5>
+        </div>
+        <div class="p-l-30 p-r-30">
+          <p-accordion class="sprint" *ngFor="let sprint of sprintsThucTien" [multiple]="true">
+            <p-accordionTab [selected]="true">
+              <ng-template pTemplate="header" select>
+                <div class="accordion-header">
+                  <span>{{ sprint.tenSprint }}</span>
+                  <span>{{ sprint.tongSoGio + ' giờ' }}</span>
+                </div>
+              </ng-template>
+
+              <div class="container">
+                <app-sprint [duAnId]="duAnId" [sprintDto]="sprint" [isHiddenThemCongViecBtn]="true" [isThucTien]="true"
+                  (moduleInfoValueForSave)="onSaveSprintValue($event, sprint.id)" [isDisableForm]="false"></app-sprint>
+              </div>
+            </p-accordionTab>
+          </p-accordion>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+  <div class="row m-t-20 p-r-30">
+    <div class="flex justify-content-center">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Trở lại" (click)="backLine()">
+      </p-button>
+    </div>
+  </div>
+</div>
+
+<p-toast key="tms" position="bottom-left"></p-toast>

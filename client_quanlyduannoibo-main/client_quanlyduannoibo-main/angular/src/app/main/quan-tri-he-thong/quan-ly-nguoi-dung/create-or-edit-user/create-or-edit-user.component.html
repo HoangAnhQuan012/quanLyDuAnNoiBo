@@ -1,0 +1,102 @@
+<div class="create-or-edit-user-wrap">
+  <div class="custome-header flex align-items-center justify-content-between">
+    <div class="custom-header-title color-111 f-w-500">
+      <h4>{{ isEdit ? 'Cập nhật người dùng' : 'Thêm mới người dùng' }}</h4>
+    </div>
+    <div class="custom-header-action">
+      <p-button styleClass="p-button-rounded p-button-icon p-button-secondary" [text]="true" (click)="close()">
+        <img src="assets/customs/svgs/close-icon.svg" alt="" width="15px" height="15px">
+      </p-button>
+    </div>
+  </div>
+  <div class="custom-body">
+    <form action="" [formGroup]="formData">
+      <p-tabView>
+        <p-tabPanel header="Thông tin chung">
+          <div class="flex col-12">
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Họ'" [titleValidate]="' *'"
+                [control]="formData.get('ho')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="ho">
+              <validation [control]="formData.get('ho')"></validation>
+            </div>
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Tên'" [titleValidate]="' *'"
+                [control]="formData.get('ten')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="ten">
+              <validation [control]="formData.get('ten')"></validation>
+            </div>
+          </div>
+
+          <div class="flex col-12">
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Tên đăng nhập'" [titleValidate]="' *'"
+                [control]="formData.get('tenDangNhap')"></app-label-validation>
+              <input class="w-12 m-t-5" type="text" pInputText formControlName="tenDangNhap">
+              <validation [control]="formData.get('tenDangNhap')"></validation>
+            </div>
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Địa chỉ email'" [titleValidate]="' *'"
+                [control]="formData.get('diaChiEmail')"></app-label-validation>
+              <input class="w-12 m-t-5" type="email" pInputText formControlName="diaChiEmail">
+              <validation [control]="formData.get('diaChiEmail')"></validation>
+            </div>
+          </div>
+
+          <div class="flex col-12" *ngIf="!id">
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Mật khẩu'" [titleValidate]="' *'"
+                [control]="formData.get('matKhau')"></app-label-validation>
+              <input class="w-12 m-t-5" type="password" pInputText formControlName="matKhau">
+              <validation [control]="formData.get('matKhau')"></validation>
+            </div>
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Xác nhận mật khẩu'" [titleValidate]="' *'"
+                [control]="formData.get('xacNhanMatKhau')"></app-label-validation>
+              <input class="w-12 m-t-5" type="password" pInputText formControlName="xacNhanMatKhau">
+              <validation [control]="formData.get('xacNhanMatKhau')"></validation>
+            </div>
+          </div>
+
+          <div class="flex col-12">
+            <div class="col-6">
+              <app-label-validation class="d-block" [title]="'Chức danh'" [titleValidate]="' *'"
+                [control]="formData.get('chucDanh')"></app-label-validation>
+              <p-dropdown class="m-t-5" [options]="chucDanhData" optionLabel="displayName" type="text"
+                formControlName="chucDanh" appendTo="body"></p-dropdown>
+              <validation [control]="formData.get('chucDanh')"></validation>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <app-label-validation class="block m-l-7" [title]="'Kích hoạt'"></app-label-validation>
+            <p-inputSwitch class="m-l-7" formControlName="kichHoat"></p-inputSwitch>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Vai trò">
+          <div class="row">
+            <ng-container *ngFor="let role of rolesData; let i = index">
+              <div class="col-6">
+                <div class="custom-control custom-checkbox flex align-items-center">
+                  <input [disabled]="isView" type="checkbox" class="custom-control-input m-r-2" [id]="'role_' + i"
+                    [checked]="isRoleChecked(role.name)" (change)="onRoleChange(role, $event)" />
+                  <label class="custom-control-label" [for]="'role_' + i">
+                    {{ role.name }}
+                  </label>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </form>
+  </div>
+  <div class="custom-footer">
+    <div class=" flex justify-content-end">
+      <p-button class="m-r-12 btn-cancel-dialog" severity="secondary" label="Hủy" (click)="close()">
+      </p-button>
+      <p-button [loading]="loading" [disabled]="loading" class="btn-save-dialog" label="Lưu" (click)="save()">
+      </p-button>
+    </div>
+  </div>
+</div>

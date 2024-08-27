@@ -1,0 +1,63 @@
+<div class="row m-b-10">
+  <div class="flex justify-content-between align-items-center">
+    <h3 class="m-b-0">Chuyên môn</h3>
+    <div class="flex flex-wrap gap-3 justify-content-left">
+      <!-- <p-button class="custom-excel-color" label="Export Excel" icon="pi pi-file-export" severity="success"></p-button> -->
+      <p-button label="Thêm mới" icon="pi pi-plus" [rounded]="true" (click)="createChuyenMon()"></p-button>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="row p-l-40 p-r-40 m-t-20">
+    <div class="col-12">
+      <span class="p-input-icon-left filterText">
+        <i class="pi pi-search m-l-10"></i>
+        <input type="text" class="filterText" placeholder="Tìm kiếm..." pInputText [(ngModel)]="keyword"
+          (keyup.enter)="getAllChuyenMon()"/>
+    </span>
+    </div>
+  </div>
+  <div class="p-l-20 p-r-20">
+    <p-table #dt [value]="chuyenMonData" (onLazyLoad)="getAllChuyenMon($event)" dataKey="id" [rows]="20"
+      [(first)]="first" [loading]="loading" [lazy]="true" styleClass="p-datatable-striped" [paginator]="totalCount > 0"
+      [totalRecords]="totalCount" [showFirstLastIcon]="false" responsiveLayout="scroll" [rowsPerPageOptions]="rowPerPageOptions"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="{{totalCount==0?'Hiển thị: 0-0/0':' Hiển thị: {first}-{last}/{totalRecords}'}} ">
+      <ng-template pTemplate="header">
+        <tr>
+          <th id="options">
+          </th>
+          <th id="tenChuyenMon">
+            Tên chuyên môn
+          </th>
+          <th id="moTa">
+            Mô tả
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-chuyenMon>
+        <tr>
+          <td>
+            <div ngbDropdown class="d-inline-block">
+              <i class="pi pi-ellipsis-v cursor-pointer" id="dropdownBasic1" ngbDropdownToggle></i>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="viewDetail(chuyenMon.id)">Xem</button>
+                <button ngbDropdownItem (click)="update(chuyenMon.id)">Cập nhật</button>
+                <button ngbDropdownItem (click)="delete(chuyenMon.id)">Xóa</button>
+              </div>
+            </div>
+          </td>
+          <td>{{ chuyenMon.tenChuyenMon }}</td>
+          <td>{{ chuyenMon.moTa }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td class="text-center" colspan="10">Không có dữ liệu</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<p-toast key="tms" position="bottom-left"></p-toast>
